@@ -1,0 +1,13 @@
+.footerContainer {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.footerContainer__nav {
+	display: flex;
+	justify-content: space-between;
+	background-color: gray;
+	color: white;
+	padding: 6px;
+}

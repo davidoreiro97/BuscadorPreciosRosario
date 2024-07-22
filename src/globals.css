@@ -1,0 +1,32 @@
+:root {
+	--backgroundGlobal: radial-gradient(circle, #ffffff, #d1d1d1);
+	--backgroundTitulo: linear-gradient(to right, #bc4eff, #9e00ff);
+	--backgroundComenzarBuscarBtn: radial-gradient(circle, #c86fff, #ba49ff);
+	--backgroundColorFlechaBtn: rgba(211, 140, 255, 0.5);
+	--backgroundOpcionesColor: linear-gradient(to top, #ffcf5b, #ffba13);
+	--backgroundVolverBtn: radial-gradient(circle, #874dab, #8d36c2);
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+body {
+	position: relative;
+	min-height: 100vh;
+	background: var(--backgroundGlobal);
+}
+.imagenFondoGlobal {
+	position: absolute;
+	width: 100%;
+	max-width: 1200px;
+	height: 100%;
+	max-height: 700px;
+	object-fit: contain;
+	object-position: center;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+}

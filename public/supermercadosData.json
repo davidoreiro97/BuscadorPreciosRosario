@@ -1,0 +1,348 @@
+{
+	"supermercados": [
+		{
+			"id": 1,
+			"nombre": "HIPERMERCADO LIBERTAD",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Bv. Oroño 6000",
+					"latitud": "-33.00781397480235",
+					"longitud": "-60.66659448840532"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"nombre": "COTO",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "3 de febrero 1602",
+					"latitud": "-32.95136527744343",
+					"longitud": "-60.646761527026"
+				},
+				{
+					"id": 2,
+					"direccion": "Urquiza 1644",
+					"latitud": "-32.94150583584028",
+					"longitud": "-60.644898558497296"
+				},
+				{
+					"id": 3,
+					"direccion": "Mendoza 3901",
+					"latitud": "-32.94494753426573",
+					"longitud": "-60.67796010103105"
+				},
+
+				{
+					"id": 4,
+					"direccion": "Junin 501(Shopping)",
+					"latitud": "-32.927465747425146",
+					"longitud": "-60.669012428826434"
+				},
+				{
+					"id": 5,
+					"direccion": "Venezuela 114 bis",
+					"latitud": "-32.92971917164986",
+					"longitud": "-60.72449123755157"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"nombre": "LA GALLEGA",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Entre Rios 2361",
+					"latitud": "-32.96427604344324",
+					"longitud": "-60.645398075137635"
+				},
+				{
+					"id": 2,
+					"direccion": "Av. Pellegrini 1194",
+					"latitud": "-32.956898414892414",
+					"longitud": "-60.642159893356684"
+				},
+				{
+					"id": 3,
+					"direccion": "Av Pellegrini 1966",
+					"latitud": "-32.954955933965635",
+					"longitud": "-60.65285267195149"
+				},
+
+				{
+					"id": 4,
+					"direccion": "9 de julio 734",
+					"latitud": "-32.95473083606544",
+					"longitud": "-60.635006045143335"
+				},
+				{
+					"id": 5,
+					"direccion": "Mendoza 255",
+					"latitud": "-32.95362789425787",
+					"longitud": "-60.62786913831552"
+				},
+				{
+					"id": 6,
+					"direccion": "Dorrego 965",
+					"latitud": "-32.946589400481045",
+					"longitud": "-60.649638974534746"
+				},
+				{
+					"id": 7,
+					"direccion": "Urquiza 1145",
+					"latitud": "-32.942965842262836",
+					"longitud": "-60.63793901741306"
+				},
+				{
+					"id": 8,
+					"direccion": "Catamarca 1498",
+					"latitud": "-32.939566884038165",
+					"longitud": "-60.642198493274385"
+				},
+				{
+					"id": 9,
+					"direccion": "Bv. Oroño 245",
+					"latitud": "-32.937435398961",
+					"longitud": "-60.65135255803229"
+				},
+				{
+					"id": 10,
+					"direccion": "Av. Alberdi 465",
+					"latitud": "-32.92245602369074",
+					"longitud": "-60.68015963512526"
+				},
+				{
+					"id": 11,
+					"direccion": "Av Eva Perón 7605",
+					"latitud": "-32.931456898906106",
+					"longitud": "-60.72482654982728"
+				},
+				{
+					"id": 12,
+					"direccion": "Mendoza 7875",
+					"latitud": "-32.94079739609556",
+					"longitud": "-60.72669916031454"
+				},
+				{
+					"id": 13,
+					"direccion": "Av. San Martin 2447",
+					"latitud": "-33.027960816806136",
+					"longitud": "-60.621334963053286"
+				}
+			]
+		},
+		{
+			"id": 4,
+			"nombre": "LA REINA",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Av. San Martin 2447",
+					"latitud": "-32.97777998589067",
+					"longitud": "-60.6435422673098"
+				},
+				{
+					"id": 2,
+					"direccion": "Bv Oroño 3478",
+					"latitud": "-32.974719900144144",
+					"longitud": "-60.661712510343335"
+				}
+			]
+		},
+		{
+			"id": 5,
+			"nombre": "JUMBO",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Av. Nansen 323",
+					"latitud": "-32.910475989376096",
+					"longitud": "-60.68331534490539"
+				}
+			]
+		},
+		{
+			"id": 6,
+			"nombre": "ARCOIRIS",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Bv Arijon 2766",
+					"latitud": "-33.00366292095366",
+					"longitud": "-60.67216858793041"
+				},
+				{
+					"id": 2,
+					"direccion": "Av. Ovidio Lagos 5660",
+					"latitud": "-33.00325063918191",
+					"longitud": "-60.6762181179935"
+				},
+				{
+					"id": 3,
+					"direccion": "Cerrito 314",
+					"latitud": "-32.9636911957082",
+					"longitud": "-60.63091984921039"
+				},
+				{
+					"id": 4,
+					"direccion": "Casilda 1240",
+					"latitud": "-32.92815197749113",
+					"longitud": "-60.681019659661224"
+				},
+				{
+					"id": 5,
+					"direccion": "Av. Juan Jose Paz 1065 bis, Fisherton",
+					"latitud": "-32.919309104985246",
+					"longitud": "-60.777713737500314"
+				},
+				{
+					"id": 6,
+					"direccion": "San josé 1845, Funes",
+					"latitud": "-32.9201123439893",
+					"longitud": "-60.813813408600005"
+				},
+				{
+					"id": 7,
+					"direccion": "Av. Bernardo Houssay 4352, Funes",
+					"latitud": "-32.924181498555924",
+					"longitud": "-60.84261711877245"
+				},
+				{
+					"id": 8,
+					"direccion": "Av. José de San Martin 1043, Perez",
+					"latitud": "-32.99526902284565",
+					"longitud": "-60.76449658964777"
+				}
+			]
+		},
+		{
+			"id": 7,
+			"nombre": "CARREFOUR",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Bv 27 de febrero 34",
+					"latitud": "-32.96995091148023",
+					"longitud": "-60.6293181455802"
+				},
+				{
+					"id": 2,
+					"direccion": "Av. Pellegrini 3250",
+					"latitud": "-32.95180577925147",
+					"longitud": "-60.669771904371586"
+				},
+				{
+					"id": 3,
+					"direccion": "Pueyrredón 747",
+					"latitud": "-32.94229693505312",
+					"longitud": "-60.656970209466245"
+				},
+				{
+					"id": 4,
+					"direccion": "Av. Eva Perón 5856",
+					"latitud": "-32.93408587500793",
+					"longitud": "-60.70169074134728"
+				},
+				{
+					"id": 5,
+					"direccion": "Av. Gral de Divisón Hernán Pujato 7646",
+					"latitud": "-32.90461812027054",
+					"longitud": "-60.72794608785459"
+				}
+			]
+		},
+		{
+			"id": 8,
+			"nombre": "DAR",
+			"ubicaciones": [
+				{
+					"id": 1,
+					"direccion": "Av San martin 4217",
+					"latitud": "-32.98678543275008",
+					"longitud": "-60.645471176660564"
+				},
+				{
+					"id": 2,
+					"direccion": "3 de febrero 198",
+					"latitud": "-32.954880481333994",
+					"longitud": "-60.62661367735429"
+				},
+				{
+					"id": 3,
+					"direccion": "Rioja 850",
+					"latitud": "-32.94836997163623",
+					"longitud": "-60.63477471059072"
+				},
+				{
+					"id": 4,
+					"direccion": "Rioja 1660",
+					"latitud": "-32.946047135770456",
+					"longitud": "-60.64644119948867"
+				},
+				{
+					"id": 5,
+					"direccion": "San Luis 1159",
+					"latitud": "-32.94898399629335",
+					"longitud": "-60.63955629602787"
+				},
+				{
+					"id": 6,
+					"direccion": "Av San martin 533",
+					"latitud": "-32.943943572779006",
+					"longitud": "-60.635918715546836"
+				},
+				{
+					"id": 7,
+					"direccion": "Corrientes 191",
+					"latitud": "-32.938553729439654",
+					"longitud": "-60.640435543802916"
+				},
+				{
+					"id": 8,
+					"direccion": "Av Pte Peron 3938",
+					"latitud": "-32.957071014909154",
+					"longitud": "-60.68133586063643"
+				},
+				{
+					"id": 9,
+					"direccion": "Gutenberg 775",
+					"latitud": "-32.93752668307019",
+					"longitud": "-60.68715635777497"
+				},
+				{
+					"id": 10,
+					"direccion": "Bv Rondeau 1253",
+					"latitud": "-32.90186821074354",
+					"longitud": "-60.69082209807161"
+				},
+				{
+					"id": 11,
+					"direccion": "Bv Rondeau 2000",
+					"latitud": "-32.89397956779329",
+					"longitud": "-60.69205786100662"
+				},
+				{
+					"id": 12,
+					"direccion": "Av J.F Kennedy 2269",
+					"latitud": "-32.88995062204428",
+					"longitud": "-60.712248569317275"
+				},
+				{
+					"id": 13,
+					"direccion": "Av Sta Fe 1865, Funes",
+					"latitud": "-32.917907431345135",
+					"longitud": "-60.81347582672807"
+				},
+				{
+					"id": 14,
+					"direccion": "Rondeau 2001",
+					"latitud": "-32.8939785765225",
+					"longitud": "-60.692050537886416"
+				}
+			]
+		}
+	]
+}
