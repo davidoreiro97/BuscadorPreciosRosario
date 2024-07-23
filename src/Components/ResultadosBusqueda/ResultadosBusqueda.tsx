@@ -45,21 +45,33 @@ export const ResultadosBusqueda = () => {
 					);
 					if (productosHallados) {
 						const newResults = productosHallados.map((e: any) => ({
-							nombre: e.tituloProducto,
+							nombre: e.titulo,
 							precio: e.precio,
-							url: e.urlProducto,
+							url: e.linkAProducto,
 							supermercado: supermercado.nombre,
 							ubicacionCercana: supermercado.ubicaciones[0],
 							ubicacionesTodas: supermercado.ubicaciones,
 						}));
-						console.log(newResults);
+						console.log("Chunk de productos : ", newResults);
 						allResults.push(...newResults);
 					}
-				} catch (e) {
-					console.log("No se pudo consultar el super kpo.", e);
+				} catch (e: any) {
+					//Hacer un estado y poner los supermercados con errores así se le informa al cliente.
+					if (e.message === "FETCH_ERROR") {
+						console.log(
+							`No se pudo consultar el supermercado ${supermercado.nombre} debido a un error interno del servidor.`
+						);
+					} else if (e.message === "INVALID_DATA") {
+						console.log("EL SERVIDOR RECIBIO UN TIPO DE DATO NO ESPERADO.");
+					} else {
+						console.log(
+							`No se pudo consultar el supermercado ${supermercado.nombre} debido a un error del cliente.`
+						);
+					}
+					continue;
 				}
 			}
-			setProductosQuery(allResults);
+			setProductosQuery(allResults.sort((a, b) => a.precio - b.precio));
 			setLoader(false);
 			console.log(allResults);
 		};
@@ -92,6 +104,36 @@ export const ResultadosBusqueda = () => {
 				<span>VOLVER</span>
 			</button>
 			<h2>ResultadosProductos</h2>
+			{/* Si productosQuery.lenght es 0 mostrar sin resultados. */}
+			{productosQuery.map((element, index) => (
+				<div key={index}>
+					<h3>Producto : {element.nombre}</h3>
+					<h4>Precio : {element.precio}$</h4>
+					<a target="_blank" href={element.url}>
+						Ver producto
+					</a>
+					<h5>Supermercado : {element.supermercado}</h5>
+					{/* Si la distancia hasta el supermercado es "NO" significa que se eligio toda la ciudad.*/}
+					{element.ubicacionCercana.distanciaHastaSupermercado !== "NO" && (
+						<h5>
+							Ubicacion más cercana : {element.ubicacionCercana.direccion}(
+							{element.ubicacionCercana.distanciaHastaSupermercado})
+						</h5>
+					)}
+					<h5>
+						Todas sus ubicaciones:{" "}
+						{element.ubicacionesTodas.map((ubicacion: any, index: number) => (
+							<span key={index}>
+								{ubicacion.direccion}{" "}
+								{ubicacion.distanciaHastaSupermercado !== "NO" && (
+									<span>({ubicacion.distanciaHastaSupermercado})</span>
+								)}
+								{",  "}
+							</span>
+						))}
+					</h5>
+				</div>
+			))}
 		</div>
 	);
 };

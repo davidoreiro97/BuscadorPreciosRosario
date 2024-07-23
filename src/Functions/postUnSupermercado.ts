@@ -4,7 +4,7 @@ export default async function postUnSupermercado(
 	productoBuscado: string
 ) {
 	//Armar un archivo con el endpoint, subirlo a un host y hacer fetch al endpoint por si cambia solo actualizarlo de ahí.
-	const endpointScrap = "http://127.0.0.1:3000/scrapSupermercados";
+	const endpointScrap = "http://127.0.0.1:3000/scrapSupermercadosRosario";
 	const optionsFetch = {
 		method: "POST",
 		headers: {
@@ -16,11 +16,15 @@ export default async function postUnSupermercado(
 		}),
 	};
 	try {
-		const response = await fetch(endpointScrap, optionsFetch);
-		const data = await response.json();
+		const res = await fetch(endpointScrap, optionsFetch);
+		if (!res.ok) {
+			const errorResponse = await res.json();
+			//Lanzo el errorType
+			throw new Error(errorResponse.errorType);
+		}
+		const data = await res.json();
 		return data.productos;
 	} catch (error) {
-		console.error("Error al enviar la solicitud:", error);
-		return null;
+		throw error;
 	}
 }
