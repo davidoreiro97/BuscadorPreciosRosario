@@ -47,7 +47,8 @@ export const ResultadosBusqueda = () => {
 						const newResults = productosHallados.map((e: any) => ({
 							nombre: e.titulo,
 							precio: e.precio,
-							url: e.linkAProducto,
+							urlImagen: e.urlImagen || "",
+							urlProductoOrig: e.linkAProducto,
 							supermercado: supermercado.nombre,
 							ubicacionCercana: supermercado.ubicaciones[0],
 							ubicacionesTodas: supermercado.ubicaciones,
@@ -76,8 +77,6 @@ export const ResultadosBusqueda = () => {
 			console.log(allResults);
 		};
 		enviarTodosLosSupermercados();
-
-		//Los detalles van a ser una ventana flotante
 	}, [productoBuscado]);
 	const navigate = useNavigate();
 	const handleVolver = () => {
@@ -107,11 +106,12 @@ export const ResultadosBusqueda = () => {
 			{/* Si productosQuery.lenght es 0 mostrar sin resultados. */}
 			{productosQuery.map((element, index) => (
 				<div key={index}>
-					<h3>Producto : {element.nombre}</h3>
 					<h4>Precio : {element.precio}$</h4>
-					<a target="_blank" href={element.url}>
-						Ver producto
-					</a>
+					<img
+						src={element.urlImagen}
+						alt={`Imagen del producto ${element.nombre}`}
+					/>
+					<h3>Producto : {element.nombre}</h3>
 					<h5>Supermercado : {element.supermercado}</h5>
 					{/* Si la distancia hasta el supermercado es "NO" significa que se eligio toda la ciudad.*/}
 					{element.ubicacionCercana.distanciaHastaSupermercado !== "NO" && (
@@ -120,18 +120,23 @@ export const ResultadosBusqueda = () => {
 							{element.ubicacionCercana.distanciaHastaSupermercado})
 						</h5>
 					)}
-					<h5>
-						Todas sus ubicaciones:{" "}
-						{element.ubicacionesTodas.map((ubicacion: any, index: number) => (
-							<span key={index}>
-								{ubicacion.direccion}{" "}
-								{ubicacion.distanciaHastaSupermercado !== "NO" && (
-									<span>({ubicacion.distanciaHastaSupermercado})</span>
-								)}
-								{",  "}
-							</span>
-						))}
-					</h5>
+					<div>
+						<h5>
+							Todas sus ubicaciones:{" "}
+							{element.ubicacionesTodas.map((ubicacion: any, index: number) => (
+								<span key={index}>
+									{ubicacion.direccion}{" "}
+									{ubicacion.distanciaHastaSupermercado !== "NO" && (
+										<span>({ubicacion.distanciaHastaSupermercado})</span>
+									)}
+									{",  "}
+								</span>
+							))}
+						</h5>
+						<a target="_blank" href={element.urlProductoOrig}>
+							Ver producto
+						</a>
+					</div>
 				</div>
 			))}
 		</div>
