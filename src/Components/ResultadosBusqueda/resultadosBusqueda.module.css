@@ -1,0 +1,21 @@
+.producto {
+	display: flex;
+	justify-content: top;
+	width: 100%;
+	border: 2px solid black;
+	margin-bottom: 10px;
+}
+.precioImg {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 200px;
+	height: 100%;
+}
+.precioImg h4 {
+	background-color: greenyellow;
+}
+.precioImg__img {
+	width: 200px;
+	height: 200px;
+}

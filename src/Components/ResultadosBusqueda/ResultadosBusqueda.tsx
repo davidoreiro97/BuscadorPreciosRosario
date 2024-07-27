@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../Redux/reducers";
 import { useNavigate } from "react-router-dom";
 import postUnSupermercado from "../../Functions/postUnSupermercado";
-
+import styles from "./resultadosBusqueda.module.css";
 export const ResultadosBusqueda = () => {
 	const [errorSeccion, setErrorSeccion] = useState(false);
 	const [supermercadoEnConsulta, setSupermercadoEnConsulta] = useState<
@@ -105,37 +105,44 @@ export const ResultadosBusqueda = () => {
 			<h2>ResultadosProductos</h2>
 			{/* Si productosQuery.lenght es 0 mostrar sin resultados. */}
 			{productosQuery.map((element, index) => (
-				<div key={index}>
-					<h4>Precio : {element.precio}$</h4>
-					<img
-						src={element.urlImagen}
-						alt={`Imagen del producto ${element.nombre}`}
-					/>
-					<h3>Producto : {element.nombre}</h3>
-					<h5>Supermercado : {element.supermercado}</h5>
-					{/* Si la distancia hasta el supermercado es "NO" significa que se eligio toda la ciudad.*/}
-					{element.ubicacionCercana.distanciaHastaSupermercado !== "NO" && (
-						<h5>
-							Ubicacion más cercana : {element.ubicacionCercana.direccion}(
-							{element.ubicacionCercana.distanciaHastaSupermercado})
-						</h5>
-					)}
-					<div>
-						<h5>
-							Todas sus ubicaciones:{" "}
-							{element.ubicacionesTodas.map((ubicacion: any, index: number) => (
-								<span key={index}>
-									{ubicacion.direccion}{" "}
-									{ubicacion.distanciaHastaSupermercado !== "NO" && (
-										<span>({ubicacion.distanciaHastaSupermercado})</span>
-									)}
-									{",  "}
-								</span>
-							))}
-						</h5>
-						<a target="_blank" href={element.urlProductoOrig}>
-							Ver producto
-						</a>
+				<div className={styles.producto} key={index}>
+					<div className={styles.precioImg}>
+						<h4>Precio : {element.precio}$</h4>
+						<img
+							className={styles.precioImg__img}
+							src={element.urlImagen}
+							alt={`Imagen del producto ${element.nombre}`}
+						/>
+					</div>
+					<div className={styles.productData}>
+						<h3>Producto : {element.nombre}</h3>
+						<h5>Supermercado : {element.supermercado}</h5>
+						{/* Si la distancia hasta el supermercado es "NO" significa que se eligio toda la ciudad.*/}
+						{element.ubicacionCercana.distanciaHastaSupermercado !== "NO" && (
+							<h5>
+								Ubicacion más cercana : {element.ubicacionCercana.direccion}(
+								{element.ubicacionCercana.distanciaHastaSupermercado})
+							</h5>
+						)}
+						<div>
+							<h5>
+								Todas sus ubicaciones:{" "}
+								{element.ubicacionesTodas.map(
+									(ubicacion: any, index: number) => (
+										<span key={index}>
+											{ubicacion.direccion}{" "}
+											{ubicacion.distanciaHastaSupermercado !== "NO" && (
+												<span>({ubicacion.distanciaHastaSupermercado})</span>
+											)}
+											{",  "}
+										</span>
+									)
+								)}
+							</h5>
+							<a target="_blank" href={element.urlProductoOrig}>
+								Ver producto
+							</a>
+						</div>
 					</div>
 				</div>
 			))}
