@@ -1,0 +1,73 @@
+.welcomeContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10vh;
+	padding: 10vh 3em;
+	font-size: 10px;
+	font-family: "Montserrat";
+	text-align: center;
+}
+.welcomeContainer__header__h1 {
+	max-width: 650px;
+	text-wrap: balance;
+	font-size: 4.2em;
+	font-weight: 650;
+	background: var(--backgroundTitulo);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: 0.3px #5b005c;
+}
+.welcomeContainer__h2 {
+	max-width: 650px;
+	text-wrap: balance;
+	font-size: 2.2em;
+	font-weight: 550;
+}
+.welcomeContainer__comenzarBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	padding-left: 6px;
+	background: var(--backgroundComenzarBuscarBtn);
+	color: white;
+	font-size: 3.2em;
+	text-decoration: none;
+	font-weight: 700;
+	text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000,
+		-1px 1px 1px #000;
+	border: 2px solid black;
+	box-shadow: inset 0px 0px 4px black;
+	filter: brightness(1) contrast(1) drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.6));
+	transition: filter 0.3s linear;
+}
+.welcomeContainer__comenzarBtn:hover {
+	box-shadow: inset 0px 0px 8px black;
+	filter: brightness(1.1) contrast(1.1)
+		drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
+	transition: filter 0.3s linear;
+}
+.welcomeContainer__comenzarBtn__flechaContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 6px 8px;
+	background-color: var(--backgroundColorFlechaBtn);
+}
+
+@media (max-width: 650px) {
+	.welcomeContainer {
+		font-size: 8px;
+		gap: 7.5vh;
+	}
+}
+@media (max-width: 450px) {
+	.welcomeContainer {
+		font-size: 5.5px;
+	}
+}

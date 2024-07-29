@@ -2,7 +2,7 @@ import { useState } from "react";
 import getGeolocation from "../../Functions/getGeolocation";
 import { pathSections } from "../../types";
 import { Link, useNavigate } from "react-router-dom";
-import { ErrorFlotanteUbicacion } from "../barrel";
+import { ErrorFlotante } from "../barrel";
 import {
 	set_coordenadas,
 	set_supermercados_cercanos,
@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { coordenadas } from "../../types";
 import checkRosarioLocation from "../../Functions/checkRosarioLocation";
 import buscarSupermercadosCercanos from "../../Functions/getSupermercadosCercanos";
-
+import styles from "./seleccionDeUbicacion.module.css";
 export const SeleccionDeUbicacion = () => {
 	const navigate = useNavigate();
 	const [errorUbicacion, setErrorUbicacion] = useState(false);
@@ -22,11 +22,7 @@ export const SeleccionDeUbicacion = () => {
 		try {
 			const { latitud, longitud, precision } = await getGeolocation();
 			const coordenadas: coordenadas = { latitud, longitud };
-			// VOLVER A HABILITAR AL TERMINAR.
 			if (precision > 100) {
-				alert(
-					"NO SE PUEDE DETERMINAR TU UBICACION EXACTA, INTENTA : -ENCONTRAR MEJOR CONEXION A INTERNET O SEÑAL -INGRESAR LA DIRECCION EN LA SEGUNDA OPCION."
-				);
 				setErrorPresicionBaja(true);
 				return;
 			}
@@ -52,32 +48,65 @@ export const SeleccionDeUbicacion = () => {
 	};
 
 	return (
-		<article>
-			<header>
-				<h2>PASO 1 de 3</h2>
+		<article className={styles.seleccionUbicacionContainer}>
+			<header className={styles.seleccionUbicacionContainer__header}>
+				<h2 className={styles.seleccionUbicacionContainer__header__h2}>
+					PASO 1 de 3
+				</h2>
 			</header>
-			<p>
+			<p className={styles.seleccionUbicacionContainer__p}>
 				Selecciona <strong>una ubicacion</strong> para que busquemos en
 				supermercados cercanos.
 			</p>
-			<div>
-				<button onClick={() => handleCercanosAMiUbicacion()}>
+			<div className={styles.seleccionUbicacionContainer__optContainer}>
+				<button
+					className="optionYellowBtn"
+					onClick={() => handleCercanosAMiUbicacion()}
+				>
 					Mi ubicación actual
 				</button>
-				<Link to={pathSections.cercanos_a_una_direccion}>
+				<Link
+					className="optionYellowBtn"
+					to={pathSections.cercanos_a_una_direccion}
+				>
 					Ingresar una ubicación
 				</Link>
-				<button onClick={() => handleTodaLaCiudad()}>
+				<button
+					className="optionYellowBtn"
+					onClick={() => handleTodaLaCiudad()}
+				>
 					Toda la ciudad de Rosario
 				</button>
 			</div>
-			<aside>
-				NOTA : La opción "Mi ubicación actual" depende de tu conexión a internet
-				y de tu dispositivo. Si no se puede determinar, utiliza la segunda
-				opción.
-			</aside>
 			{errorUbicacion && (
-				<ErrorFlotanteUbicacion setErrorUbicacion={setErrorUbicacion} />
+				<ErrorFlotante
+					setError={setErrorUbicacion}
+					tituloError="NO PUDIMOS DETECTAR TU UBICACION"
+					posiblesSoluciones={[
+						"Activar la ubicación desde tu dispositivo y volver a elegir la opción.",
+						"En caso de seguir obteniendo este error prueba con las otras opciones.",
+					]}
+				/>
+			)}
+			{errorPresicionBaja && (
+				<ErrorFlotante
+					setError={setErrorPresicionBaja}
+					tituloError="NO SE PUEDE DETERMINAR TU UBICACION EXACTA"
+					posiblesSoluciones={[
+						"Mejorar tu conexión a internet.",
+						"Ingresar directamente la dirección en la segunda opción.",
+					]}
+				/>
+			)}
+			{errorFueraRosario && (
+				<ErrorFlotante
+					setError={setErrorFueraRosario}
+					tituloError="TE ENCUENTRAS FUERA DE LA CIUDAD DE ROSARIO"
+					posiblesSoluciones={[
+						"Ingresando la dirección en la opción 2.",
+						"Acercandote más a la ciudad de Rosario.",
+					]}
+				/>
 			)}
 		</article>
 	);

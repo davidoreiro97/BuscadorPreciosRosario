@@ -1,0 +1,12 @@
+.flecha_sig {
+	stroke: black;
+	stroke-width: 2.3px;
+	fill: white;
+}
+
+@media (max-width: 450px) {
+	.flecha_sig {
+		width: 32px;
+		height: 32px;
+	}
+}

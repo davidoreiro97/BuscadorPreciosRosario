@@ -9,7 +9,6 @@ import {
 	CercanosAMiUbicacion,
 	CercanosAUnaDireccion,
 	BusquedaProducto,
-	ComoYDondeBusqueda,
 	Footer,
 	ResultadosBusqueda,
 } from "./Components/barrel";
@@ -35,10 +34,6 @@ function App() {
 				<Route
 					path={pathSections.busqueda_producto}
 					element={<BusquedaProducto />}
-				/>
-				<Route
-					path={pathSections.como_y_donde_busqueda}
-					element={<ComoYDondeBusqueda />}
 				/>
 				<Route
 					path={pathSections.resultadosBusqueda}

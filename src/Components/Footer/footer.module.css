@@ -3,11 +3,25 @@
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	font-family: "Montserrat";
+	font-size: 18px;
 }
 .footerContainer__nav {
 	display: flex;
-	justify-content: space-between;
-	background-color: gray;
+	justify-content: center;
+	background-color: rgb(89, 89, 89);
 	color: white;
 	padding: 6px;
+}
+.miNombre {
+	color: black;
+	padding-left: 5px;
+	font-weight: 750;
+	text-decoration: underline;
+}
+
+@media (max-width: 450px) {
+	.footerContainer {
+		font-size: 10px;
+	}
 }
