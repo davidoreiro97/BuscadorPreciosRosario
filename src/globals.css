@@ -43,7 +43,7 @@ body {
 	max-width: 600px;
 	display: flex;
 	justify-content: center;
-	padding: 1em;
+	padding: 0.8em;
 	border: 2px solid black;
 	background: var(--backgroundOpcionesColor);
 	font-family: "Montserrat";
@@ -62,18 +62,22 @@ body {
 		drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
 	transition: filter 0.3s linear;
 }
+/* Para las notas */
+.asideNota {
+	font-size: 2em;
+	font-style: italic;
+}
 /* Boton volver */
 .volverBtn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
-	padding-right: 10px;
 	background: var(--backgroundVolverBtn);
 	border: 2px solid black;
 	box-shadow: inset 0px 0px 1px black;
 	font-family: "Montserrat";
-	font-size: 3em;
+	font-size: 2.4em;
 	font-weight: 700;
 	color: white;
 	text-decoration: none;
@@ -88,4 +92,9 @@ body {
 	filter: brightness(1.1) contrast(1.1)
 		drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.6));
 	transition: filter 0.3s linear;
+}
+.absoluteTopLeft {
+	position: absolute;
+	top: 20px;
+	left: 20px;
 }

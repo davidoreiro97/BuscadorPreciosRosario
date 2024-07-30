@@ -1,7 +1,4 @@
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-//Recordar em cada secion comprobar que se tenga lo necesario :
-// (ubicacion, que existan supermercados cercanos, que haya resultados, etc), en caso que no se tenga esto devolver
-// al inicio.
 import { pathSections } from "./types";
 import {
 	Bienvenida,
@@ -12,7 +9,6 @@ import {
 	Footer,
 	ResultadosBusqueda,
 } from "./Components/barrel";
-// import styles from "./app.module.css";
 
 function App() {
 	return (

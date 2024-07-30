@@ -1,15 +1,17 @@
-import styles from "./errorFlotante.module.css";
+import styles from "./ErrorFlotanteNoContinuar.module.css";
 import errorImg from "../../../assets/img/errorImg.png";
 import { FlechaSigAtr } from "../../svgIcons/SvgIcons";
-export const ErrorFlotante = ({
-	setError,
+import { useNavigate } from "react-router-dom";
+import { pathSections } from "../../../types";
+export const ErrorFlotanteNoContinuar = ({
 	tituloError,
-	posiblesSoluciones,
 }: {
-	setError: (estado: boolean) => void;
 	tituloError: string;
-	posiblesSoluciones: string[];
 }) => {
+	const navigate = useNavigate();
+	const volverInicio = () => {
+		navigate(pathSections.seleccion_de_ubicacion);
+	};
 	return (
 		<div className={styles.errorContainer}>
 			<div className={styles.errorContainer__imgh2Ctn}>
@@ -22,19 +24,9 @@ export const ErrorFlotante = ({
 			</div>
 
 			<h3 className={styles.errorContainer__tituloError}>{tituloError}</h3>
-			<div className={styles.errorContainer__pYulContainer}>
-				<p className={styles.errorContainer__p}>Prueba</p>
-				<ul className={styles.errorContainer__ul}>
-					{posiblesSoluciones.map((solucion, index) => (
-						<li key={index} className={styles.errorContainer__li}>
-							# {solucion}
-						</li>
-					))}
-				</ul>
-			</div>
 			<button
 				onClick={() => {
-					setError(false);
+					volverInicio();
 				}}
 				className="volverBtn"
 			>

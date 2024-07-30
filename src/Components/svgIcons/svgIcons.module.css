@@ -4,7 +4,7 @@
 	fill: white;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 675px) {
 	.flecha_sig {
 		width: 32px;
 		height: 32px;

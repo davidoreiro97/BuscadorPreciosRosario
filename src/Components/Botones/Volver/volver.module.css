@@ -1,0 +1,17 @@
+.flechaContainerBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 6px 8px;
+	background-color: var(--backgroundColorFlechaBtn);
+	transform: rotateY(180deg);
+}
+.textoBtn {
+	padding-right: 10px;
+}
+@media (max-width: 675px) {
+	.textoBtn {
+		display: none;
+	}
+}
