@@ -1,0 +1,95 @@
+.busquedaProducto {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 10vh 3em;
+	font-size: 10px;
+	font-family: "Montserrat";
+	text-align: center;
+	gap: 1em;
+}
+.busquedaProducto__header__h2 {
+	font-size: 3.2em;
+}
+.busquedaProducto__p {
+	max-width: 550px;
+	font-size: 2.2em;
+	text-wrap: balance;
+	font-weight: 450;
+}
+.busquedaProducto__optContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 5vh;
+	padding-top: 20px;
+}
+.searchInputContainer {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 20px 0px;
+}
+.searchInputContainer__input {
+	padding: 20px;
+	border: 2px solid black;
+	background-color: white;
+	border-radius: 30px;
+	width: 90%;
+	font-family: "Montserrat";
+	font-size: 2em;
+}
+
+.searchInputContainer__errorMsg {
+	position: absolute;
+	bottom: -10px;
+	color: rgb(255, 0, 0);
+	font-size: 2em;
+	font-weight: 500;
+}
+.lupaIcono {
+	width: 28px;
+	height: 28px;
+}
+.searchButton {
+	max-width: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+	font-size: 2.2em;
+	padding: 14px;
+}
+@media (max-width: 650px) {
+	.busquedaProducto {
+		font-size: 8px;
+		gap: 1em;
+	}
+	.busquedaProducto__optContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 350px;
+		gap: 6vh;
+		padding-top: 20px;
+	}
+}
+
+@media (max-width: 450px) {
+	.busquedaProducto {
+		font-size: 6.5px;
+	}
+	.confirmacionContainer__btnsContainer__btn {
+		width: 56px;
+		height: 48px;
+	}
+}

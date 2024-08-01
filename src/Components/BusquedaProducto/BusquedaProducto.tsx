@@ -4,21 +4,25 @@ import { AppState } from "../../Redux/reducers";
 import { set_nombre_producto } from "../../Redux/actions";
 import { useNavigate } from "react-router-dom";
 import { pathSections } from "../../types";
-
+import { ErrorFlotanteNoContinuar } from "../Errores/ErrorFlotanteNoContinuar/ErrorFlotanteNoContinuar";
+import { Volver } from "../Botones/Volver/Volver";
+import styles from "./busquedaProducto.module.css";
+import urlLupa from "../../assets/img/lupa.png";
 export const BusquedaProducto = () => {
-	const [errorUbicacion, setErrorUbicacion] = useState(false);
-	const [errorSupermercados, seterrorSupermercados] = useState(false);
+	const [errorSeccion, setErrorSeccion] = useState(false);
+
 	const [errorInput, setErrorInput] = useState(false);
 	const [productoBuscado, setProductoBuscado] = useState("");
 	const { latitud, longitud, supermercadosResultantes } = useSelector(
 		(state: AppState) => state.GetSupermercadosCercanosReducer
 	);
+
 	useEffect(() => {
 		if (latitud === null || longitud === null) {
-			setErrorUbicacion(true);
+			setErrorSeccion(true);
 		}
 		if (supermercadosResultantes === null) {
-			seterrorSupermercados(true);
+			setErrorSeccion(true);
 		}
 	}, []);
 
@@ -33,40 +37,32 @@ export const BusquedaProducto = () => {
 	};
 	const handleBuscar = (e: FormEvent) => {
 		e.preventDefault();
-		//Comprobar que el usuario escribio un producto. OK.
 		if (!productoBuscado.trim()) {
-			setErrorInput(true); //Por si son solo espacios
+			setErrorInput(true);
 			return;
 		}
-		//Comprobar que haya ubicación.
-		//Comprobar que hay supermercados cercanos a la ubicacion.
-		if (errorUbicacion || errorSupermercados) {
+		if (errorSeccion) {
 			return;
 		}
 		dispatch(set_nombre_producto(productoBuscado));
 		navigate(pathSections.resultadosBusqueda);
 	};
 	return (
-		<article>
-			{errorUbicacion && (
-				<h1>OCURRIO UN ERROR CON LA UBICACION.VOLVER AL PASO 1.</h1>
+		<article className={styles.busquedaProducto}>
+			{errorSeccion && (
+				<ErrorFlotanteNoContinuar tituloError="OCURRIO UN ERROR CON LA UBICACION-SUPERMERCADOS" />
 			)}
-			{errorSupermercados && (
-				<h1>NO SE ENCONTRARON SUPERMERCADOS. VOLVER AL PASO 1.</h1>
-			)}
-			<button onClick={() => handleVolver()} title="VOLVER">
-				<div>{"<-"}</div>
-				<span>VOLVER</span>
-			</button>
-			<header>
-				<h2>PASO 3 de 3</h2>
+			<Volver functionVolver={handleVolver} />
+			<header className={styles.busquedaProducto__header}>
+				<h2 className={styles.busquedaProducto__header__h2}>PASO 3 de 3</h2>
 			</header>
 			<form onSubmit={handleBuscar}>
-				<label htmlFor="busquedaInput">
+				<label htmlFor="busquedaInput" className={styles.busquedaProducto__p}>
 					Ingresa el nombre del producto que quieras buscar
 				</label>
-				<div>
+				<div className={styles.searchInputContainer}>
 					<input
+						className={styles.searchInputContainer__input}
 						type="text"
 						name="busqueda"
 						id="busquedaInput"
@@ -75,11 +71,18 @@ export const BusquedaProducto = () => {
 						value={productoBuscado}
 						onChange={handleChangeInput}
 					/>
-					{errorInput && <p>Ingrese un producto</p>}
+					{errorInput && (
+						<p className={styles.searchInputContainer__errorMsg}>
+							Ingrese un producto
+						</p>
+					)}
 				</div>
-				<button type="submit">
+				<button
+					type="submit"
+					className={`${styles.searchButton} optionYellowBtn`}
+				>
 					<span>BUSCAR</span>
-					<div>LUPA</div>
+					<img className={styles.lupaIcono} src={urlLupa} alt="LupaIcono" />
 				</button>
 			</form>
 		</article>

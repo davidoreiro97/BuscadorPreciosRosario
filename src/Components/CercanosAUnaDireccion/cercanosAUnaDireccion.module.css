@@ -98,6 +98,7 @@
 	box-shadow: inset 0px 0px 4px black;
 	filter: brightness(1) contrast(1) drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.6));
 	transition: filter 0.3s linear;
+	cursor: pointer;
 }
 .confirmacionContainer__btnsContainer__btn__cancel {
 	background: radial-gradient(circle, rgb(255, 0, 0), rgb(139, 0, 0));
