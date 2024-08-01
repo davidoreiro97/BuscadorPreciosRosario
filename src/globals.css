@@ -64,8 +64,9 @@ body {
 }
 /* Para las notas */
 .asideNota {
-	font-size: 2em;
-	font-style: italic;
+	margin: 10px;
+	font-size: 1.6em;
+	font-family: "Montserrat";
 }
 /* Boton volver */
 .volverBtn {
@@ -94,7 +95,8 @@ body {
 	transition: filter 0.3s linear;
 }
 .absoluteTopLeft {
-	position: absolute;
+	position: fixed;
 	top: 20px;
 	left: 20px;
+	z-index: 10;
 }

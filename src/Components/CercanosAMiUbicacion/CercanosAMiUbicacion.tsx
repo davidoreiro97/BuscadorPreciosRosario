@@ -8,7 +8,6 @@ import buscarSupermercadosCercanos from "../../Functions/getSupermercadosCercano
 import styles from "./cercanosAMiUbicacion.module.css";
 import { ErrorFlotante } from "../barrel";
 import { ErrorFlotanteNoContinuar } from "../Errores/ErrorFlotanteNoContinuar/ErrorFlotanteNoContinuar";
-import { FlechaSigAtr } from "../svgIcons/SvgIcons";
 import { Volver } from "../Botones/Volver/Volver";
 
 export const CercanosAMiUbicacion = () => {

@@ -1,0 +1,123 @@
+.loaderContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 10vh;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.71);
+	backdrop-filter: blur(10px);
+	z-index: 100;
+}
+.imgTxtContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+.imgContainer {
+	width: 164px;
+	height: 164px;
+	position: relative;
+}
+.marcoLenteLupa {
+	position: relative;
+	z-index: 20;
+	width: 100px; /* Ajusta según tu necesidad */
+	height: 100px; /* Ajusta según tu necesidad */
+	animation: moverLupa 10s infinite linear; /* Animación de la lupa */
+}
+.marcoLenteLupa::after {
+	content: "";
+	background-image: url(../../../assets/img/lupa.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	z-index: 20;
+	top: 0;
+	left: 0;
+}
+.lenteLupa {
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 1px solid black;
+	width: 64px;
+	height: 64px;
+	z-index: 10;
+}
+.mapaVisibleEnLupa {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 164px;
+	height: 164px;
+	transform-origin: center center;
+	transform: scale(1.2);
+	filter: contrast(1.5);
+	animation: moverImagen 10s infinite linear; /* Animación de la imagen */
+}
+.mapaFueraDeLupa {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 164px;
+	height: 164px;
+	filter: blur(0.75px);
+}
+.textoSearchingLocation {
+	font-family: "Montserrat";
+	font-size: 24px;
+	color: black;
+}
+
+@keyframes moverLupa {
+	0% {
+		top: 0;
+		left: 0;
+	}
+	25% {
+		top: 0;
+		left: 100px;
+	}
+	50% {
+		top: 100px;
+		left: 100px;
+	}
+	75% {
+		top: 100px;
+		left: 0;
+	}
+	100% {
+		top: 0;
+		left: 0;
+	}
+}
+
+@keyframes moverImagen {
+	0% {
+		top: 0;
+		left: 0;
+	}
+	25% {
+		top: 0;
+		left: -100px;
+	}
+	50% {
+		top: -100px;
+		left: -100px;
+	}
+	75% {
+		top: -100px;
+		left: 0;
+	}
+	100% {
+		top: 0;
+		left: 0;
+	}
+}
