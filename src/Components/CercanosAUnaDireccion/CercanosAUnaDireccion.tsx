@@ -145,7 +145,11 @@ export const CercanosAUnaDireccion = () => {
 			{mensajeDireccion && direccionText && (
 				<div className={styles.confirmacionContainer}>
 					<h3 className={styles.confirmacionContainer__h3}>
-						La direccion ingresada fue : <br /> {direccionText}?
+						La direccion ingresada fue : <br />{" "}
+						<span className={styles.confirmacionContainer__h3_direccion}>
+							{direccionText}
+						</span>
+						?
 					</h3>
 					<div className={styles.confirmacionContainer__btnsContainer}>
 						<button

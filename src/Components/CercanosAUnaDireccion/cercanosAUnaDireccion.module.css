@@ -60,7 +60,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding-top: 10vh;
+	padding: 10vh;
 	background-color: rgba(255, 255, 255, 0.695);
 	backdrop-filter: blur(10px);
 	z-index: 100;
@@ -68,6 +68,12 @@
 .confirmacionContainer__h3 {
 	font-family: "Montserrat";
 	font-size: 2em;
+	text-wrap: balance;
+	font-weight: 600;
+}
+.confirmacionContainer__h3_direccion {
+	color: #b541fc;
+	font-weight: 800;
 }
 .confirmacionContainer__btnsContainer {
 	display: flex;
@@ -76,18 +82,21 @@
 	gap: 20px;
 }
 .confirmacionContainer__btnsContainer__btn {
-	width: 72px;
-	height: 56px;
+	font-size: 2.8em;
+	width: 2.6em;
+	height: 2.5em;
+	max-width: 68px;
+	max-height: 58px;
+	border-radius: 5px;
 	color: white;
 	background: radial-gradient(circle, rgb(7, 206, 0), rgb(5, 165, 0));
-	font-size: 3em;
 	text-decoration: none;
 	font-weight: 700;
-	text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000,
-		-1px 1px 1px #000;
+	text-shadow: 1px 1px 1px #00000071, -1px -1px 1px #00000071,
+		1px -1px 1px #00000071, -1px 1px 1px #00000071;
 	border: 2px solid black;
 	box-shadow: inset 0px 0px 4px black;
-	filter: brightness(1) contrast(1) drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.6));
+	filter: brightness(1) contrast(1) drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.6));
 	transition: filter 0.3s linear;
 }
 .confirmacionContainer__btnsContainer__btn__cancel {
@@ -118,5 +127,9 @@
 @media (max-width: 450px) {
 	.cercanosAUnaDireccionContainer {
 		font-size: 6.5px;
+	}
+	.confirmacionContainer__btnsContainer__btn {
+		width: 56px;
+		height: 48px;
 	}
 }
