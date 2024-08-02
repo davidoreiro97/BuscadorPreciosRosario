@@ -4,15 +4,24 @@ import { AppState } from "../../Redux/reducers";
 import { useNavigate } from "react-router-dom";
 import postUnSupermercado from "../../Functions/postUnSupermercado";
 import styles from "./resultadosBusqueda.module.css";
+import { Volver } from "../Botones/Volver/Volver";
 export const ResultadosBusqueda = () => {
 	const [errorSeccion, setErrorSeccion] = useState(false);
+	const [noResults, setNoResults] = useState(false);
+	const [supermercadosConErrores, setSupermercadosConErrores] = useState<
+		{ supermercado: string; error: string }[] | [{}]
+	>([{}]);
 	const [supermercadoEnConsulta, setSupermercadoEnConsulta] = useState<
 		string | null
 	>(null);
+
 	const [numSupermercadoEnConsulta, setNumSupermercadoEnConsulta] =
 		useState<string>("0");
+
 	const [loader, setLoader] = useState(false);
+
 	const [productosQuery, setProductosQuery] = useState<any[]>([]);
+
 	//Para toda la ciudad se envía 91,181 en latitud y longitud.
 	const { latitud, longitud, supermercadosResultantes, productoBuscado } =
 		useSelector((state: AppState) => state.GetSupermercadosCercanosReducer);
@@ -28,6 +37,7 @@ export const ResultadosBusqueda = () => {
 			setErrorSeccion(true);
 			return;
 		}
+
 		const enviarTodosLosSupermercados = async () => {
 			//Si hubo un error buscando algún supermercado informar con un "No pudimos buscar tu producto en : ...";
 			setLoader(true);
@@ -35,9 +45,6 @@ export const ResultadosBusqueda = () => {
 			for (const [index, supermercado] of supermercadosResultantes.entries()) {
 				setSupermercadoEnConsulta(supermercado.nombre);
 				setNumSupermercadoEnConsulta((index + 1).toString());
-				console.log(
-					`Supermercado ${index + 1} de ${supermercadosResultantes.length}`
-				);
 				try {
 					let productosHallados = await postUnSupermercado(
 						supermercado.nombre,
@@ -78,6 +85,7 @@ export const ResultadosBusqueda = () => {
 		};
 		enviarTodosLosSupermercados();
 	}, [productoBuscado]);
+
 	const navigate = useNavigate();
 	const handleVolver = () => {
 		navigate(-1);
@@ -89,6 +97,7 @@ export const ResultadosBusqueda = () => {
 			{errorSeccion && (
 				<h1>Ocurrió un error con los datos ingresados. Volver al inicio.</h1>
 			)}
+
 			{loader && (
 				<div>
 					<h2>Buscando tu producto en : {supermercadoEnConsulta}</h2>
@@ -96,12 +105,12 @@ export const ResultadosBusqueda = () => {
 						supermercado {numSupermercadoEnConsulta} de{" "}
 						{supermercadosResultantes?.length}
 					</p>
+					<button>CANCELAR</button>
 				</div>
 			)}
-			<button title="VOLVER" onClick={() => handleVolver()}>
-				<div>{"<-"}</div>
-				<span>VOLVER</span>
-			</button>
+
+			{/* <Volver functionVolver={handleVolver} /> */}
+
 			<h2>ResultadosProductos</h2>
 			{/* Si productosQuery.lenght es 0 mostrar sin resultados. */}
 			{productosQuery.map((element, index) => (
