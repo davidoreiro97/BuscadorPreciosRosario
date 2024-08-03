@@ -1,9 +1,8 @@
-//Enviar los supermercados en los cuales buscaremos productos.y el producto a buscar.
 export default async function postUnSupermercado(
 	nombreSupermercado: string,
-	productoBuscado: string
+	productoBuscado: string,
+	signal: AbortSignal
 ) {
-	//Armar un archivo con el endpoint, subirlo a un host y hacer fetch al endpoint por si cambia solo actualizarlo de ahí.
 	const endpointScrap = "http://127.0.0.1:3000/scrapSupermercadosRosario";
 	const optionsFetch = {
 		method: "POST",
@@ -14,12 +13,12 @@ export default async function postUnSupermercado(
 			nombreSupermercado: nombreSupermercado,
 			productoBuscado: productoBuscado,
 		}),
+		signal: signal,
 	};
 	try {
 		const res = await fetch(endpointScrap, optionsFetch);
 		if (!res.ok) {
 			const errorResponse = await res.json();
-			//Lanzo el errorType
 			throw new Error(errorResponse.errorType);
 		}
 		const data = await res.json();
