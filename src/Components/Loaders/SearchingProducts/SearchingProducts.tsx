@@ -38,22 +38,22 @@ export const SearchingProducts = ({
 				<h4 className={styles.infoContainer__titulo}>Información</h4>
 				<p className={styles.infoContainer__text}>
 					La búsqueda puede demorar u obtener errores dependiendo de varios
-					factores, como por ejemplo : <br />
-					- La conexión del servidor a internet la cual es hogareña y no tan
-					buena. <br />- El tiempo de respuesta de cada sitio web (Las búsquedas
-					se realizan en tiempo real en cada web de cada supermercado).
-					<br />
+					factores, como por ejemplo: <br />
+					- La conexión del servidor a internet, la cual es hogareña y no tan
+					buena. <br />
+					- El tiempo de respuesta de cada sitio web (Las búsquedas se realizan
+					en tiempo real en cada web de cada supermercado). <br />
 					- La dirección IP del servidor puede ser bloqueada por los
 					supermercados, evitando así que se pueda realizar la búsqueda de tu
 					producto en ese supermercado y obteniendo errores como "El servidor no
-					pudo realizar la consulta".
-					<br />
-					<strong>Nota</strong> : Algúnos buscadores en las propias páginas web
-					devuelven productos no relacionados con la búsqueda lo cual en esta
-					versión no está en mi poder controlar.
-					<br />
+					pudo realizar la consulta". <br />
+					<strong>Nota:</strong> Algunos buscadores en las propias páginas web
+					devuelven productos no relacionados con la búsqueda, lo cual en esta
+					versión no está en mi poder controlar. <br />
 					En próximas versiones se planea refactorizar el backend para
 					solucionar todos estos problemas y ofrecer una mejor experiencia.
+					<br />
+					Saludos !.
 				</p>
 			</div>
 		</div>

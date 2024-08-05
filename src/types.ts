@@ -45,7 +45,7 @@ export type ubicacionCercana = {
 	direccion: string;
 	latitud: string;
 	longitud: string;
-	distanciaHastaSupermercado: string;
+	distanciaHastaSupermercado: number;
 };
 export type supermercadoResultado = {
 	nombre: string;

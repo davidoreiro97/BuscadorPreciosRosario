@@ -2,50 +2,73 @@
 	"supermercados": [
 		{
 			"id": 1,
-			"nombre": "HIPERMERCADO LIBERTAD",
+			"nombre": "LA REINA",
 			"ubicaciones": [
 				{
 					"id": 1,
-					"direccion": "Bv. Oroño 6000",
-					"latitud": "-33.00781397480235",
-					"longitud": "-60.66659448840532"
+					"direccion": "Av. San Martin 2447",
+					"latitud": "-32.97777998589067",
+					"longitud": "-60.6435422673098"
+				},
+				{
+					"id": 2,
+					"direccion": "Bv Oroño 3478",
+					"latitud": "-32.974719900144144",
+					"longitud": "-60.661712510343335"
 				}
 			]
 		},
 		{
 			"id": 2,
-			"nombre": "COTO",
+			"nombre": "ARCOIRIS",
 			"ubicaciones": [
 				{
 					"id": 1,
-					"direccion": "3 de febrero 1602",
-					"latitud": "-32.95136527744343",
-					"longitud": "-60.646761527026"
+					"direccion": "Bv Arijon 2766",
+					"latitud": "-33.00366292095366",
+					"longitud": "-60.67216858793041"
 				},
 				{
 					"id": 2,
-					"direccion": "Urquiza 1644",
-					"latitud": "-32.94150583584028",
-					"longitud": "-60.644898558497296"
+					"direccion": "Av. Ovidio Lagos 5660",
+					"latitud": "-33.00325063918191",
+					"longitud": "-60.6762181179935"
 				},
 				{
 					"id": 3,
-					"direccion": "Mendoza 3901",
-					"latitud": "-32.94494753426573",
-					"longitud": "-60.67796010103105"
+					"direccion": "Cerrito 314",
+					"latitud": "-32.9636911957082",
+					"longitud": "-60.63091984921039"
 				},
-
 				{
 					"id": 4,
-					"direccion": "Junin 501(Shopping)",
-					"latitud": "-32.927465747425146",
-					"longitud": "-60.669012428826434"
+					"direccion": "Casilda 1240",
+					"latitud": "-32.92815197749113",
+					"longitud": "-60.681019659661224"
 				},
 				{
 					"id": 5,
-					"direccion": "Venezuela 114 bis",
-					"latitud": "-32.92971917164986",
-					"longitud": "-60.72449123755157"
+					"direccion": "Av. Juan Jose Paz 1065 bis, Fisherton",
+					"latitud": "-32.919309104985246",
+					"longitud": "-60.777713737500314"
+				},
+				{
+					"id": 6,
+					"direccion": "San josé 1845, Funes",
+					"latitud": "-32.9201123439893",
+					"longitud": "-60.813813408600005"
+				},
+				{
+					"id": 7,
+					"direccion": "Av. Bernardo Houssay 4352, Funes",
+					"latitud": "-32.924181498555924",
+					"longitud": "-60.84261711877245"
+				},
+				{
+					"id": 8,
+					"direccion": "Av. José de San Martin 1043, Perez",
+					"latitud": "-32.99526902284565",
+					"longitud": "-60.76449658964777"
 				}
 			]
 		},
@@ -136,19 +159,13 @@
 		},
 		{
 			"id": 4,
-			"nombre": "LA REINA",
+			"nombre": "HIPERMERCADO LIBERTAD",
 			"ubicaciones": [
 				{
 					"id": 1,
-					"direccion": "Av. San Martin 2447",
-					"latitud": "-32.97777998589067",
-					"longitud": "-60.6435422673098"
-				},
-				{
-					"id": 2,
-					"direccion": "Bv Oroño 3478",
-					"latitud": "-32.974719900144144",
-					"longitud": "-60.661712510343335"
+					"direccion": "Bv. Oroño 6000",
+					"latitud": "-33.00781397480235",
+					"longitud": "-60.66659448840532"
 				}
 			]
 		},
@@ -166,55 +183,38 @@
 		},
 		{
 			"id": 6,
-			"nombre": "ARCOIRIS",
+			"nombre": "COTO",
 			"ubicaciones": [
 				{
 					"id": 1,
-					"direccion": "Bv Arijon 2766",
-					"latitud": "-33.00366292095366",
-					"longitud": "-60.67216858793041"
+					"direccion": "3 de febrero 1602",
+					"latitud": "-32.95136527744343",
+					"longitud": "-60.646761527026"
 				},
 				{
 					"id": 2,
-					"direccion": "Av. Ovidio Lagos 5660",
-					"latitud": "-33.00325063918191",
-					"longitud": "-60.6762181179935"
+					"direccion": "Urquiza 1644",
+					"latitud": "-32.94150583584028",
+					"longitud": "-60.644898558497296"
 				},
 				{
 					"id": 3,
-					"direccion": "Cerrito 314",
-					"latitud": "-32.9636911957082",
-					"longitud": "-60.63091984921039"
+					"direccion": "Mendoza 3901",
+					"latitud": "-32.94494753426573",
+					"longitud": "-60.67796010103105"
 				},
+
 				{
 					"id": 4,
-					"direccion": "Casilda 1240",
-					"latitud": "-32.92815197749113",
-					"longitud": "-60.681019659661224"
+					"direccion": "Junin 501(Shopping)",
+					"latitud": "-32.927465747425146",
+					"longitud": "-60.669012428826434"
 				},
 				{
 					"id": 5,
-					"direccion": "Av. Juan Jose Paz 1065 bis, Fisherton",
-					"latitud": "-32.919309104985246",
-					"longitud": "-60.777713737500314"
-				},
-				{
-					"id": 6,
-					"direccion": "San josé 1845, Funes",
-					"latitud": "-32.9201123439893",
-					"longitud": "-60.813813408600005"
-				},
-				{
-					"id": 7,
-					"direccion": "Av. Bernardo Houssay 4352, Funes",
-					"latitud": "-32.924181498555924",
-					"longitud": "-60.84261711877245"
-				},
-				{
-					"id": 8,
-					"direccion": "Av. José de San Martin 1043, Perez",
-					"latitud": "-32.99526902284565",
-					"longitud": "-60.76449658964777"
+					"direccion": "Venezuela 114 bis",
+					"latitud": "-32.92971917164986",
+					"longitud": "-60.72449123755157"
 				}
 			]
 		},

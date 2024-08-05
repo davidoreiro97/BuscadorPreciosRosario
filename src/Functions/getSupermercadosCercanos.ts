@@ -31,31 +31,26 @@ export default async function buscarSupermercadosCercanos(
 							parseFloat(ubicacion.latitud),
 							parseFloat(ubicacion.longitud)
 						);
-						// Si es menor al rango ingresado se agrega, caso contrario no.
-						if (distanciaHastaSupermercado < radioBusqueda) {
-							return {
-								direccion: ubicacion.direccion,
-								latitud: ubicacion.latitud, //Para futuramente calcular mejor la distancia
-								longitud: ubicacion.longitud, //Para futuramente calcular mejor la distancia
-								distanciaHastaSupermercado: `${Math.round(
-									parseFloat((distanciaHastaSupermercado * 10).toFixed(2))
-								)} Cuadras aprox.`,
-							};
-						} else {
-							return null;
-						}
+						return {
+							direccion: ubicacion.direccion,
+							latitud: ubicacion.latitud, //Para futuramente calcular mejor la distancia
+							longitud: ubicacion.longitud, //Para futuramente calcular mejor la distancia
+							//<---> LA DISTANCIA SE DEVUELVE EN KM, RECORDAR : 10 CUADRAS = 1KM. <--->
+							distanciaHastaSupermercado: distanciaHastaSupermercado,
+						};
 					})
 					// Se filtran los nulls.
 					.filter((ubicacion) => ubicacion !== null)
 					// Se ordenan las ubicaciones por distancia de manera ascendente.
 					.sort(
 						(a, b) =>
-							parseFloat(a.distanciaHastaSupermercado) -
-							parseFloat(b.distanciaHastaSupermercado)
+							a.distanciaHastaSupermercado - b.distanciaHastaSupermercado
 					);
 
-				if (ubicacionesCercanas.length > 0) {
-					// Si hay elementos en el arreglo de ubicaciones cercanas se carga el nombre junto con las ubicaciones.
+				//Si la ubicación más cercana está dentro del radio de busqueda (es menor o igual al radio de busqueda su distancia).
+				// console.log("<----------> Supermercado :", supermercado.nombre);
+				// console.log(ubicacionesCercanas);
+				if (ubicacionesCercanas[0].distanciaHastaSupermercado < radioBusqueda) {
 					supermercadosResultado.push({
 						nombre: supermercado.nombre,
 						ubicaciones: ubicacionesCercanas,
@@ -70,7 +65,7 @@ export default async function buscarSupermercadosCercanos(
 							direccion: ubicacion.direccion,
 							latitud: ubicacion.latitud, //Para futuramente calcular mejor la distancia
 							longitud: ubicacion.longitud, //Para futuramente calcular mejor la distancia
-							distanciaHastaSupermercado: "NO",
+							distanciaHastaSupermercado: 0,
 						};
 					});
 				supermercadosResultado.push({

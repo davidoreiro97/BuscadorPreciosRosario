@@ -1,21 +1,98 @@
-.producto {
-	display: flex;
-	justify-content: top;
+.sectionContainer {
 	width: 100%;
-	border: 2px solid black;
-	margin-bottom: 10px;
 }
-.precioImg {
+.resultadoBusquedaProducto {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-width: 200px;
-	height: 100%;
+	justify-content: center;
+	padding: 10vh 3em;
+	font-size: 10px;
+	font-family: "Montserrat";
+	text-align: center;
+	gap: 1em;
 }
-.precioImg h4 {
-	background-color: greenyellow;
+.resultadosPara {
+	font-size: 2em;
 }
-.precioImg__img {
-	width: 200px;
-	height: 200px;
+.productoBuscadoText {
+	color: #9e00ff;
+}
+
+.orderByBtnContainer {
+	width: 100%;
+	position: relative;
+	padding-top: 6px;
+}
+
+.orderByBtnContainer__btn {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 6px;
+	border: 2px solid black;
+	background: var(--backgroundOpcionesColor);
+	font-family: "Montserrat";
+	font-size: 1.8em;
+	font-weight: 500;
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+	filter: brightness(1) contrast(1) drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
+	transition: filter 0.3s linear;
+	z-index: 20;
+}
+.orderByBtnContainer__btn:hover {
+	filter: brightness(1.1) contrast(1.1)
+		drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
+	transition: filter 0.3s linear;
+}
+
+.orderByBtnContainer__optionsContainer {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffcf5b;
+	position: absolute;
+	top: 99%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 20;
+	border: 1.5px solid black;
+	border-bottom: 0px;
+	border-radius: 10px;
+	overflow-y: hidden;
+}
+.orderByBtnContainer__optionsContainer__option {
+	background-color: transparent;
+	border: 0px;
+	padding: 18px;
+	font-family: "Montserrat";
+	font-weight: 550;
+	border-bottom: 1px solid black;
+	box-shadow: inset 0px 0px 6px 0px black;
+	transition: background-color 0.3s linear;
+	cursor: pointer;
+}
+
+.orderByBtnContainer__optionsContainer__option:hover {
+	background-color: #faff5b;
+}
+
+.orderByBtnContainer__optionsContainer__option.disabled {
+	background-color: #9d6e00;
+	color: rgba(255, 255, 255, 0.678);
+	cursor: not-allowed;
+	filter: none;
+	pointer-events: none;
+}
+.containerParaUseRef {
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media (max-width: 500px) {
+	.resultadoBusquedaProducto {
+		padding: 20vh 0px;
+	}
 }

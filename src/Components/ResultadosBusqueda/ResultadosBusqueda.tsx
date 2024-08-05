@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../../Redux/reducers";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { Volver } from "../Botones/Volver/Volver";
 import { ErrorFlotanteNoContinuar } from "../Errores/ErrorFlotanteNoContinuar/ErrorFlotanteNoContinuar";
 import { SearchingProducts } from "../Loaders/SearchingProducts/SearchingProducts";
 import { ErrorFlotanteResultadosBusqueda } from "../Errores/ErrorFlotanteResultadosBusqueda/ErrorFlotanteResultadosBusqueda";
+import { Productos } from "./Productos/Productos";
 
 export const ResultadosBusqueda = () => {
 	const [errorSeccion, setErrorSeccion] = useState(false);
@@ -29,10 +30,10 @@ export const ResultadosBusqueda = () => {
 	const [fetchController, setFetchController] = useState<AbortController>(
 		new AbortController()
 	);
-
 	const { latitud, longitud, supermercadosResultantes, productoBuscado } =
 		useSelector((state: AppState) => state.GetSupermercadosCercanosReducer);
-
+	const [orderByOptionSelected, setOrderByOptionSelected] = useState("price");
+	const [menuOrderByOpen, setMenuOrderByOpen] = useState(false);
 	useEffect(() => {
 		setProductosQuery([]);
 		if (
@@ -107,7 +108,22 @@ export const ResultadosBusqueda = () => {
 		supermercadosResultantes,
 		cancelarPeticionEntera,
 	]);
+	useEffect(() => {
+		//Para cerrar el menú flotante de las opciones de ordenado
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				orderByRef.current &&
+				!orderByRef.current.contains(event.target as Node)
+			) {
+				setMenuOrderByOpen(false);
+			}
+		};
 
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, []);
 	const navigate = useNavigate();
 	const handleVolver = () => {
 		navigate(-1);
@@ -116,9 +132,68 @@ export const ResultadosBusqueda = () => {
 		setCancelarPeticionEntera(true);
 		fetchController.abort();
 	};
-
+	const orderByPrice = () => {
+		let productos = [...productosQuery];
+		if (productos) {
+			productos.sort((a, b) => a.precio - b.precio);
+			setProductosQuery(productos);
+			setMenuOrderByOpen(false);
+			setOrderByOptionSelected("price");
+		}
+	};
+	const orderByClosest = () => {
+		let productos = [...productosQuery];
+		if (productos) {
+			productos.sort(
+				(a, b) =>
+					a.ubicacionCercana.distanciaHastaSupermercado -
+					b.ubicacionCercana.distanciaHastaSupermercado
+			);
+			setMenuOrderByOpen(false);
+			setOrderByOptionSelected("closest");
+			setProductosQuery(productos);
+		}
+	};
+	const orderByAlphabet = () => {
+		let productos = [...productosQuery];
+		if (productos) {
+			productos.sort(
+				(a, b) =>
+					a.ubicacionCercana.distanciaHastaSupermercado -
+					b.ubicacionCercana.distanciaHastaSupermercado
+			);
+			productos.sort((a, b) =>
+				a.nombre.localeCompare(b.nombre, undefined, { sensitivity: "base" })
+			);
+			setMenuOrderByOpen(false);
+			setOrderByOptionSelected("alphabet");
+			setProductosQuery(productos);
+		}
+	};
+	const orderByMarket = () => {
+		let productos = [...productosQuery];
+		if (productos) {
+			productos.sort(
+				(a, b) =>
+					a.ubicacionCercana.distanciaHastaSupermercado -
+					b.ubicacionCercana.distanciaHastaSupermercado
+			);
+			productos.sort((a, b) =>
+				a.supermercado.localeCompare(b.supermercado, undefined, {
+					sensitivity: "base",
+				})
+			);
+			setMenuOrderByOpen(false);
+			setOrderByOptionSelected("market");
+			setProductosQuery(productos);
+		}
+	};
+	const handleAbrirOrderBy = () => {
+		setMenuOrderByOpen((prevState) => !prevState);
+	};
+	const orderByRef = useRef<HTMLDivElement>(null);
 	return (
-		<div>
+		<div className={styles.resultadoBusquedaProducto}>
 			<Volver functionVolver={handleVolver} />
 			{errorSeccion && (
 				<ErrorFlotanteNoContinuar tituloError="Ocurrió un error con la ubicación o el producto." />
@@ -132,7 +207,6 @@ export const ResultadosBusqueda = () => {
 					producto={productoBuscado ?? ""}
 				/>
 			)}
-
 			{supermercadosConErrores.length > 0 &&
 				ventanaFlotanteErroresSupermercados && (
 					<ErrorFlotanteResultadosBusqueda
@@ -140,54 +214,75 @@ export const ResultadosBusqueda = () => {
 						handleCerrarVentana={setVentanaFlotanteErroresSupermercados}
 					/>
 				)}
+			<div className={styles.sectionContainer}>
+				<h2 className={styles.resultadosPara}>
+					Resultados para{" "}
+					<span className={styles.productoBuscadoText}>{productoBuscado}</span>
+				</h2>
 
-			<h2>ResultadosProductos</h2>
-			{/* Luego irá en otro componente */}
-			{productosQuery.length === 0 ? (
-				<p>Sin resultados</p>
-			) : (
-				productosQuery.map((element, index) => (
-					<div className={styles.producto} key={index}>
-						<div className={styles.precioImg}>
-							<h4>Precio : {element.precio}$</h4>
-							<img
-								className={styles.precioImg__img}
-								src={element.urlImagen}
-								alt={`Imagen del producto ${element.nombre}`}
-							/>
-						</div>
-						<div className={styles.productData}>
-							<h3>Producto : {element.nombre}</h3>
-							<h5>Supermercado : {element.supermercado}</h5>
-							{element.ubicacionCercana.distanciaHastaSupermercado !== "NO" && (
-								<h5>
-									Ubicacion más cercana : {element.ubicacionCercana.direccion}(
-									{element.ubicacionCercana.distanciaHastaSupermercado})
-								</h5>
-							)}
-							<div>
-								<h5>
-									Todas sus ubicaciones:{" "}
-									{element.ubicacionesTodas.map(
-										(ubicacion: any, index: number) => (
-											<span key={index}>
-												{ubicacion.direccion}{" "}
-												{ubicacion.distanciaHastaSupermercado !== "NO" && (
-													<span>({ubicacion.distanciaHastaSupermercado})</span>
-												)}
-												{",  "}
-											</span>
-										)
-									)}
-								</h5>
-								<a target="_blank" href={element.urlProductoOrig}>
-									Ver producto
-								</a>
+				<div className={styles.orderByBtnContainer}>
+					<div className={styles.containerParaUseref} ref={orderByRef}>
+						<button
+							onClick={handleAbrirOrderBy}
+							className={styles.orderByBtnContainer__btn}
+						>
+							ORDENAR PRODUCTOS
+						</button>
+						{menuOrderByOpen && (
+							<div className={styles.orderByBtnContainer__optionsContainer}>
+								<button
+									title="Ordenar de menor a mayor precio"
+									onClick={orderByPrice}
+									className={`${
+										styles.orderByBtnContainer__optionsContainer__option
+									} ${
+										orderByOptionSelected === "price" ? styles.disabled : ""
+									}`}
+								>
+									MENOR A MAYOR PRECIO
+								</button>
+								<button
+									className={`${
+										styles.orderByBtnContainer__optionsContainer__option
+									} ${
+										orderByOptionSelected === "closest" || latitud === -200
+											? styles.disabled
+											: ""
+									}`}
+									title="Ordenar de mas cercano a mas lejano"
+									onClick={orderByClosest}
+								>
+									{/* La latitud es -200 cuando no se eligió ubicación*/}
+									SUPERMERCADO MAS CERCANO
+								</button>
+								<button
+									title="Ordenar productos alfabeticamente"
+									onClick={orderByAlphabet}
+									className={`${
+										styles.orderByBtnContainer__optionsContainer__option
+									} ${
+										orderByOptionSelected === "alphabet" ? styles.disabled : ""
+									}`}
+								>
+									NOMBRE DE PRODUCTO (A {"->"} Z)
+								</button>
+								<button
+									title="Ordenar supermercados alfabeticamente"
+									onClick={orderByMarket}
+									className={`${
+										styles.orderByBtnContainer__optionsContainer__option
+									} ${
+										orderByOptionSelected === "market" ? styles.disabled : ""
+									}`}
+								>
+									NOMBRE DE SUPERMERCADO (A {"->"} Z)
+								</button>
 							</div>
-						</div>
+						)}
 					</div>
-				))
-			)}
+				</div>
+			</div>
+			<Productos productosQuery={productosQuery} />
 		</div>
 	);
 };
