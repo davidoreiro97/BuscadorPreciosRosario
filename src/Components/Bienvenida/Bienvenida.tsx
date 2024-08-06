@@ -7,7 +7,7 @@ export const Bienvenida = () => {
 		<article className={styles.welcomeContainer}>
 			<header className={styles.welcomeContainer__header}>
 				<h1 className={styles.welcomeContainer__header__h1}>
-					Encontrá los producto al mejor precio en la ciudad de Rosario, Santa
+					Encontrá los productos al mejor precio en la ciudad de Rosario, Santa
 					Fe, Argentina.
 				</h1>
 			</header>
