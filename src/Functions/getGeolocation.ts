@@ -1,5 +1,4 @@
 import { geolocationReturn } from "../types";
-import { coordenadas } from "../types";
 export default async function getGeolocation(): Promise<geolocationReturn> {
 	return new Promise((resolve, reject) => {
 		const options = {
