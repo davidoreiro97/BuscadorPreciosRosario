@@ -3,7 +3,8 @@ export default async function postUnSupermercado(
 	productoBuscado: string,
 	signal: AbortSignal
 ) {
-	const endpointScrap = "http://127.0.0.1:3000/scrapSupermercadosRosario";
+	// const endpointScrap = "http://127.0.0.1:3000/scrapSupermercadosRosario";
+	const endpointScrap = "http://192.168.0.4:3000/coordinates";
 	const optionsFetch = {
 		method: "POST",
 		headers: {
