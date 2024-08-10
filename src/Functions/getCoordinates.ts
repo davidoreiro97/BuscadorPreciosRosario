@@ -1,10 +1,10 @@
 export default async function getCoordinates(
 	ubicacionText: string
 ): Promise<{ latitud: number; longitud: number; direccion: string }> {
-	//Hacer un fetch a un json y obtener la url del endpoint en Ngrok luego ya que esta puede variar.
-	//Se actualizará dicho json con un script que comprobará si la url de ngrok es igual a la url del json publicado.
+	//Crear un json en github para obtener los endpoints.
+	//Actualizar los endpoints con algún script el cual vaya leyendo el tunel generado para el puerto.
 	// const endpoint = "http://127.0.0.1:3000/coordinates";
-	const endpoint = "http://192.168.0.4:3000/coordinates";
+	const endpoint = "https://b160-190-2-103-70.ngrok-free.app/coordinates";
 	const options = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
