@@ -1,17 +1,20 @@
+import { getEndpoints } from "./getEndpoints";
+
 export default async function postUnSupermercado(
 	nombreSupermercado: string,
 	productoBuscado: string,
 	signal: AbortSignal
 ) {
-	//Crear un json en github para obtener los endpoints.
-	//Actualizar los endpoints con algún script el cual vaya leyendo el tunel generado para el puerto.
-	// const endpointScrap = "http://127.0.0.1:3000/scrapSupermercadosRosario";
-	const endpointScrap =
-		"https://b160-190-2-103-70.ngrok-free.app/scrapSupermercadosRosario";
+	const tunnel_endpoints_base_url = await getEndpoints();
+	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
+	//Agregar el url_ngrok como redundancia luego.
+	const endpointScrap = `${url_localtunnel}/scrapSupermercadosRosario`;
 	const optionsFetch = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			"User-Agent": "localtunnel", // Para localtunnel
+			"bypass-tunnel-reminder": "true", // Para localtunnel
 		},
 		body: JSON.stringify({
 			nombreSupermercado: nombreSupermercado,
