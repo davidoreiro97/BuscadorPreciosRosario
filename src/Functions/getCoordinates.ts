@@ -32,12 +32,15 @@ export default async function getCoordinates(
 			try {
 				res = await fetch(endpoint_localtunnel, options);
 				if (res.ok) {
+					contador_conectar_localtunnel = 10;
 					break;
 				} else {
 					contador_conectar_localtunnel++;
 				}
 			} catch (e) {
 				contador_conectar_localtunnel++;
+				contador_conectar_localtunnel = 10;
+				break;
 			}
 			if (contador_conectar_localtunnel < 10) {
 				//Un delay de 2 segundos, para ver si esperando funciona
@@ -47,9 +50,11 @@ export default async function getCoordinates(
 		//Si el contador de local tunnel llego a 10 intentar con la url de ngrok.
 
 		if (!res) {
+			contador_conectar_localtunnel = 10;
 			throw new Error("No se pudo conectar con el túnel.");
 		}
 		if (!res.ok) {
+			contador_conectar_localtunnel = 10;
 			const errorResponse = await res.json();
 			throw new Error(errorResponse.errorType);
 		}
