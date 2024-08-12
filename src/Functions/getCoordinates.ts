@@ -31,14 +31,13 @@ export default async function getCoordinates(
 			);
 			try {
 				res = await fetch(endpoint_localtunnel, options);
-				if (res.ok) {
+				if (res) {
 					contador_conectar_localtunnel = 10;
 					break;
 				} else {
 					contador_conectar_localtunnel++;
 				}
 			} catch (e) {
-				contador_conectar_localtunnel++;
 				contador_conectar_localtunnel = 10;
 				break;
 			}
