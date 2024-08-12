@@ -9,7 +9,7 @@ export default async function buscarSupermercadosCercanos(
 	radioBusqueda: number,
 	todaLaCiudad?: boolean
 ): Promise<supermercadoResultado[]> {
-	const urlUbicacionesSupermercado = "/supermercadosData.json";
+	const urlUbicacionesSupermercado = "../assets/supermercadosData.json";
 	let supermercadosResultado: supermercadoResultado[] = [];
 	try {
 		const response = await fetch(urlUbicacionesSupermercado);
