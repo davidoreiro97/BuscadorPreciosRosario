@@ -5,8 +5,8 @@ export default async function getCoordinates(
 ): Promise<{ latitud: number; longitud: number; direccion: string }> {
 	const tunnel_endpoints_base_url = await getEndpoints();
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
-	//Agregar el url_ngrok como redundancia luego.
 	const endpoint = `${url_localtunnel}/coordinates`;
+
 	const options = {
 		method: "POST",
 		headers: {
@@ -17,16 +17,36 @@ export default async function getCoordinates(
 		body: JSON.stringify({ direccionIngresada: ubicacionText }),
 	};
 
+	let res: Response | undefined;
+	let contador_conectar_localtunnel = 0;
+
 	try {
-		const res = await fetch(endpoint, options);
+		//Se hace un try para intentar conectar con el tunel varias veces ya que son inestables.
+		while (contador_conectar_localtunnel < 3) {
+			try {
+				res = await fetch(endpoint, options);
+				if (res.ok) {
+					break;
+				} else {
+					contador_conectar_localtunnel++;
+				}
+			} catch (e) {
+				contador_conectar_localtunnel++;
+			}
+		}
+		if (!res) {
+			throw new Error("No se pudo conectar con el túnel.");
+		}
 		if (!res.ok) {
 			const errorResponse = await res.json();
 			throw new Error(errorResponse.errorType);
 		}
+
 		const datosUbicacionJson = await res.json();
 		const { latitud, longitud, direccion } = datosUbicacionJson;
 		return { latitud, longitud, direccion };
 	} catch (error: any) {
+		console.error("Error al obtener coordenadas:", error);
 		throw error;
 	}
 }
