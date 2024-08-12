@@ -18,6 +18,7 @@ export const CercanosAUnaDireccion = () => {
 	const [errorMSG, setErrorMSG] = useState("");
 	const [errorSoluciones, setErrorSoluciones] = useState<string[]>([""]);
 	const [errorSeccion, setErrorSeccion] = useState(false);
+	const [errorEnter, setErrorEnter] = useState(false);
 	const [loader, setLoader] = useState(false);
 	const [radioBusqueda, setRadioBusqueda] = useState(0);
 	const [ubicacionInput, setUbicacionInput] = useState("");
@@ -46,8 +47,12 @@ export const CercanosAUnaDireccion = () => {
 
 	const handleDeterminarUbicacion = async (e: FormEvent) => {
 		e.preventDefault();
-		if (!ubicacionInput.trim() || radioBusqueda === 0) {
+		if (!ubicacionInput.trim()) {
 			setErrorInput(true);
+			return;
+		}
+		if (radioBusqueda === 0) {
+			setErrorEnter(true);
 			return;
 		}
 		const horaActual = Date.now();
@@ -202,6 +207,11 @@ export const CercanosAUnaDireccion = () => {
 					{errorInput && (
 						<span className={styles.searchInputContainer__errorMsg}>
 							Ingrese una ubicación válida
+						</span>
+					)}
+					{errorEnter && (
+						<span className={styles.searchInputContainer__errorMsg}>
+							Seleccione un radio de búsqueda.
 						</span>
 					)}
 				</div>
