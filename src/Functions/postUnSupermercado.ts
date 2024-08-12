@@ -37,6 +37,7 @@ export default async function postUnSupermercado(
 			try {
 				res = await fetch(endpoint_localtunnel, options);
 				if (res.ok) {
+					contador_conectar_localtunnel = 10;
 					break;
 				} else {
 					contador_conectar_localtunnel++;
@@ -59,9 +60,11 @@ export default async function postUnSupermercado(
 			const errorResponse = await res.json();
 			throw new Error(errorResponse.errorType);
 		}
+		contador_conectar_localtunnel = 10;
 		const data = await res.json();
 		return data.productos;
 	} catch (error) {
+		contador_conectar_localtunnel = 10;
 		throw error;
 	}
 }
