@@ -46,11 +46,10 @@ export const CercanosAUnaDireccion = () => {
 
 	const handleDeterminarUbicacion = async (e: FormEvent) => {
 		e.preventDefault();
-		if (!ubicacionInput.trim()) {
+		if (!ubicacionInput.trim() || radioBusqueda === 0) {
 			setErrorInput(true);
 			return;
 		}
-
 		const horaActual = Date.now();
 		if (horaActual - horarioUltimoFetch.current < tiempo_espera_fetch) {
 			//Para evitar que se hagan solicitudes continuas en el front, en el backend tiene
