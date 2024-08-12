@@ -1,3 +1,4 @@
+import { delay } from "./delay";
 import { getEndpoints } from "./getEndpoints";
 
 export default async function getCoordinates(
@@ -22,7 +23,12 @@ export default async function getCoordinates(
 
 	try {
 		//Se hace un try para intentar conectar con el tunel varias veces ya que son inestables.
-		while (contador_conectar_localtunnel < 3) {
+		while (contador_conectar_localtunnel < 10) {
+			console.log(
+				`Intento ${
+					contador_conectar_localtunnel + 1
+				} de 10 de conectar a localtunnel`
+			);
 			try {
 				res = await fetch(endpoint, options);
 				if (res.ok) {
@@ -33,7 +39,13 @@ export default async function getCoordinates(
 			} catch (e) {
 				contador_conectar_localtunnel++;
 			}
+			if (contador_conectar_localtunnel < 10) {
+				//Un delay de 2 segundos, para ver si esperando funciona
+				await delay(2000);
+			}
 		}
+		//Si el contador de local tunnel llego a 10 intentar con la url de ngrok.
+
 		if (!res) {
 			throw new Error("No se pudo conectar con el túnel.");
 		}
