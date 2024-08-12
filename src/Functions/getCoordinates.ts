@@ -32,7 +32,6 @@ export default async function getCoordinates(
 
 		try {
 			res = await fetch(endpoint_localtunnel, options);
-
 			if (res.ok) {
 				const datosUbicacionJson = await res.json();
 				const { latitud, longitud, direccion } = datosUbicacionJson;
@@ -43,7 +42,8 @@ export default async function getCoordinates(
 					errorResponse.errorType || "Error desconocido del servidor"
 				);
 			}
-		} catch (e) {
+		} catch (e: any) {
+			console.log(e.message);
 			if (e instanceof TypeError && e.message.includes("network error")) {
 				console.log(
 					"Error al conectarse al túnel de localtunnel, reintentando..."
