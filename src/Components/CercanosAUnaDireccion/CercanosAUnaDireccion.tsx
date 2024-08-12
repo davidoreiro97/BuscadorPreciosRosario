@@ -51,7 +51,11 @@ export const CercanosAUnaDireccion = () => {
 			setErrorInput(true);
 			return;
 		}
+		console.log(radioBusqueda);
+		console.log(typeof radioBusqueda);
 		if (radioBusqueda === 0) {
+			console.log(radioBusqueda);
+			console.log(typeof radioBusqueda);
 			setErrorEnter(true);
 			return;
 		}
