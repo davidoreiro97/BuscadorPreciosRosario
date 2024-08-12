@@ -6,7 +6,7 @@ export default async function getCoordinates(
 ): Promise<{ latitud: number; longitud: number; direccion: string }> {
 	const tunnel_endpoints_base_url = await getEndpoints();
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
-	const endpoint = `${url_localtunnel}/coordinates`;
+	const endpoint_localtunnel = `${url_localtunnel}/coordinates`;
 
 	const options = {
 		method: "POST",
@@ -30,7 +30,7 @@ export default async function getCoordinates(
 				} de 10 de conectar a localtunnel`
 			);
 			try {
-				res = await fetch(endpoint, options);
+				res = await fetch(endpoint_localtunnel, options);
 				if (res.ok) {
 					break;
 				} else {
@@ -41,7 +41,7 @@ export default async function getCoordinates(
 			}
 			if (contador_conectar_localtunnel < 10) {
 				//Un delay de 2 segundos, para ver si esperando funciona
-				await delay(2000);
+				await delay(2500);
 			}
 		}
 		//Si el contador de local tunnel llego a 10 intentar con la url de ngrok.
