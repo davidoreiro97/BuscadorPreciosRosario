@@ -44,7 +44,11 @@ export default async function getCoordinates(
 			}
 		} catch (e: any) {
 			console.log(e.message);
-			if (e instanceof TypeError && e.message.includes("network error")) {
+			if (
+				e instanceof TypeError &&
+				(e.message.includes("network error") ||
+					e.message.includes("Failed to fetch"))
+			) {
 				console.log(
 					"Error al conectarse al túnel de localtunnel, reintentando..."
 				);
