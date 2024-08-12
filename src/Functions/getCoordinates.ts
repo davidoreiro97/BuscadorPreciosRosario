@@ -12,57 +12,52 @@ export default async function getCoordinates(
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"User-Agent": "localtunnel", // Para localtunnel
-			"bypass-tunnel-reminder": "true", // Para localtunnel
+			"User-Agent": "localtunnel",
+			"bypass-tunnel-reminder": "true",
 		},
 		body: JSON.stringify({ direccionIngresada: ubicacionText }),
 	};
 
+	const maximo_intentos = 10;
+	let intentos_localtunnelt = 0;
 	let res: Response | undefined;
-	let contador_conectar_localtunnel = 0;
 
-	try {
-		//Se hace un try para intentar conectar con el tunel varias veces ya que son inestables.
-		while (contador_conectar_localtunnel < 10) {
-			console.log(
-				`Intento ${
-					contador_conectar_localtunnel + 1
-				} de 10 de conectar a localtunnel`
-			);
-			try {
-				res = await fetch(endpoint_localtunnel, options);
-				if (res) {
-					contador_conectar_localtunnel = 10;
-					break;
-				} else {
-					contador_conectar_localtunnel++;
-				}
-			} catch (e) {
-				contador_conectar_localtunnel = 10;
-				break;
+	while (intentos_localtunnelt < maximo_intentos) {
+		//Revisar esto
+		console.log(
+			`Intento ${
+				intentos_localtunnelt + 1
+			} de ${maximo_intentos} de conectar a localtunnel`
+		);
+
+		try {
+			res = await fetch(endpoint_localtunnel, options);
+
+			if (res.ok) {
+				const datosUbicacionJson = await res.json();
+				const { latitud, longitud, direccion } = datosUbicacionJson;
+				return { latitud, longitud, direccion };
+			} else {
+				const errorResponse = await res.json();
+				throw new Error(
+					errorResponse.errorType || "Error desconocido del servidor"
+				);
 			}
-			if (contador_conectar_localtunnel < 10) {
-				//Un delay de 2 segundos, para ver si esperando funciona
-				await delay(2500);
+		} catch (e) {
+			if (e instanceof TypeError && e.message.includes("network error")) {
+				console.log(
+					"Error al conectarse al túnel de localtunnel, reintentando..."
+				);
+				intentos_localtunnelt++;
+				await delay(2000); // Delay de 2 segundos
+			} else {
+				console.log("Otro tipo de error en la solicitud");
+				throw e; // Propagar otros tipos de errores
 			}
 		}
-		//Si el contador de local tunnel llego a 10 intentar con la url de ngrok.
-
-		if (!res) {
-			contador_conectar_localtunnel = 10;
-			throw new Error("No se pudo conectar con el túnel.");
-		}
-		if (!res.ok) {
-			contador_conectar_localtunnel = 10;
-			const errorResponse = await res.json();
-			throw new Error(errorResponse.errorType);
-		}
-
-		const datosUbicacionJson = await res.json();
-		const { latitud, longitud, direccion } = datosUbicacionJson;
-		return { latitud, longitud, direccion };
-	} catch (error: any) {
-		console.error("Error al obtener coordenadas:", error);
-		throw error;
 	}
+
+	throw new Error(
+		"No se pudo conectar con el túnel después de varios intentos."
+	);
 }
