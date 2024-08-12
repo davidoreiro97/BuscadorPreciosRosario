@@ -27,9 +27,10 @@ export const ResultadosBusqueda = () => {
 		useState<string>("0");
 	const [loader, setLoader] = useState(false);
 	const [productosQuery, setProductosQuery] = useState<any[]>([]);
-	const [fetchController, setFetchController] = useState<AbortController>(
-		new AbortController()
-	);
+	// const [fetchController, setFetchController] = useState<AbortController>(
+	// 	new AbortController()
+	// );
+	const fetchController = new AbortController();
 	const { latitud, longitud, supermercadosResultantes, productoBuscado } =
 		useSelector((state: AppState) => state.GetSupermercadosCercanosReducer);
 	const [orderByOptionSelected, setOrderByOptionSelected] = useState("price");
