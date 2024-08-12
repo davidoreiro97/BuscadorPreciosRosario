@@ -36,11 +36,12 @@ export default async function postUnSupermercado(
 			);
 			try {
 				res = await fetch(endpoint_localtunnel, options);
-				if (res.ok) {
+				if (res) {
 					contador_conectar_localtunnel = 10;
 					break;
 				} else {
 					contador_conectar_localtunnel++;
+					console.log("No se pudo conectar con el tunel, reintentando...");
 				}
 			} catch (e) {
 				contador_conectar_localtunnel = 10;
@@ -57,7 +58,6 @@ export default async function postUnSupermercado(
 			contador_conectar_localtunnel = 10;
 			throw new Error("No se pudo conectar con el túnel.");
 		}
-
 		if (!res.ok) {
 			contador_conectar_localtunnel = 10;
 			const errorResponse = await res.json();
