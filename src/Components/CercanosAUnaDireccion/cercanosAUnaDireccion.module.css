@@ -24,7 +24,7 @@
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	gap: 5vh;
+	gap: 20px;
 	padding-top: 20px;
 }
 .searchInputContainer {
@@ -120,7 +120,7 @@
 		flex-direction: column;
 		align-items: center;
 		max-width: 350px;
-		gap: 6vh;
+		gap: 24px;
 		padding-top: 20px;
 	}
 }

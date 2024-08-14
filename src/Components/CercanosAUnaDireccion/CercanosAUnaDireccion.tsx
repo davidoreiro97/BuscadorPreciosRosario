@@ -133,7 +133,13 @@ export const CercanosAUnaDireccion = () => {
 						navigate(pathSections.busqueda_producto);
 					}
 				} else {
-					alert("NO ES UNA DIRECCION DENTRO DE ROSARIO, SANTA FE, ARGENTINA.");
+					setErrorMSG(
+						"La dirección no se encuentra dentro de Rosario, Santa Fe, Argentina."
+					);
+					setErrorSoluciones([
+						"Pruebe con otra dirección mas cercana a la ciudad.",
+					]);
+					setErrorSeccion(true);
 				}
 			}
 		}
