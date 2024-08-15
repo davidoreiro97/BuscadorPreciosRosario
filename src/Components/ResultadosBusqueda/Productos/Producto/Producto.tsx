@@ -9,7 +9,6 @@ import logoLibertad from "../../../../assets/img/logosSupermercados/svg/libertad
 import logoJumbo from "../../../../assets/img/logosSupermercados/svg/jumbo.svg";
 import { useState } from "react";
 type producto_prop_types = {
-	key: number;
 	precio: string;
 	url_imagen_online: string;
 	nombre_producto: string;
@@ -20,7 +19,6 @@ type producto_prop_types = {
 	url_producto_online: string;
 };
 export const Producto = ({
-	key,
 	precio,
 	url_imagen_online,
 	nombre_producto,
@@ -48,7 +46,7 @@ export const Producto = ({
 	};
 	const urlLogo = logosURL[nombre_supermercado];
 	return (
-		<div className={styles.producto} key={key}>
+		<div className={styles.producto}>
 			<div className={styles.producto__precioImgContainer}>
 				<h4 className={styles.producto__precioImgContainer__precio}>
 					{precio}$

@@ -11,9 +11,11 @@ export default async function postUnSupermercado(
 	signal: AbortSignal
 ) {
 	const tunnel_endpoints_base_url = await getEndpoints();
-	//Agregar el url_ngrok como redundancia luego.
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
+	const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
 	const endpoint_localtunnel = `${url_localtunnel}/scrapSupermercadosRosario`;
+	const endpoint_ngrok = `${url_ngrok}/scrapSupermercadosRosario`; // Corregir si el endpoint es diferente
+
 	const options = {
 		method: "POST",
 		headers: {
@@ -29,22 +31,19 @@ export default async function postUnSupermercado(
 	};
 
 	const maximo_intentos = 10;
-	let intentos_localtunnel = 0;
-	let res: Response | undefined;
 
-	try {
-		//Se hace un try para intentar conectar con el tunel varias veces ya que son inestables.
-		//Se tiene en cuenta el signal ya que si no se haría los diez intentos aunque se cancele.
-		while (intentos_localtunnel < maximo_intentos && !signal.aborted) {
+	async function intentarConectar(endpoint: string) {
+		let intentos = 0;
+		let res: Response | undefined;
+		while (intentos < maximo_intentos && !signal.aborted) {
 			console.log(
 				`Intento ${
-					intentos_localtunnel + 1
-				} de ${maximo_intentos} de conectar a localtunnel`
+					intentos + 1
+				} de ${maximo_intentos} de conectar a ${endpoint}`
 			);
 			try {
-				res = await fetch(endpoint_localtunnel, options);
+				res = await fetch(endpoint, options);
 				if (res.ok) {
-					intentos_localtunnel = 10;
 					const data = await res.json();
 					return data.productos;
 				} else {
@@ -54,26 +53,45 @@ export default async function postUnSupermercado(
 					);
 				}
 			} catch (e: any) {
-				console.log(e.message);
 				if (
 					e instanceof TypeError &&
 					(e.message.includes("network error") ||
 						e.message.includes("Failed to fetch"))
 				) {
-					console.log(
-						"Error al conectarse al túnel de localtunnel, reintentando..."
-					);
-					intentos_localtunnel++;
+					console.log("Error al conectarse, reintentando...");
+					intentos++;
 					await delay(2000); // Delay de 2 segundos
 				} else {
-					console.log("Otro tipo de error en la solicitud");
-					intentos_localtunnel = 10;
+					if (signal.aborted) {
+						console.log("Se aborto la solicitud.");
+					} else {
+						console.log("Otro tipo de error en la solicitud.");
+					}
+					intentos = maximo_intentos; // Salir del bucle si es otro tipo de error
 					throw e; // Propagar otros tipos de errores
 				}
 			}
 		}
-		//Si el contador de local tunnel llego a 10 intentar con la url de ngrok.
-	} catch (error) {
-		throw error;
+		if (!signal.aborted && intentos === maximo_intentos) {
+			throw new Error("No se pudo conectar después de varios intentos.");
+		}
+		if (signal.aborted) {
+			throw new Error("signal is aborted without reason");
+		}
+	}
+
+	try {
+		// Intento primero con localtunnel
+		return await intentarConectar(endpoint_localtunnel);
+	} catch (e: any) {
+		if (e.message === "No se pudo conectar después de varios intentos.") {
+			// Intento con ngrok si localtunnel falla
+			console.log(
+				"Fallo en los intentos con localtunnel, intentando con ngrok..."
+			);
+			return await intentarConectar(endpoint_ngrok);
+		} else {
+			throw e;
+		}
 	}
 }
