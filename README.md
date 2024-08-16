@@ -1,1 +1,1 @@
-https://davidoreiro97.github.io/BuscadorPreciosRosarioFrontend/
+https://davidoreiro97.github.io/BuscadorPreciosRosario/
