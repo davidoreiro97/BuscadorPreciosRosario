@@ -3,9 +3,29 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+		<link rel="author" href="https://davidoreiro97.github.io/portfolio" />
+		<meta name="author" content="David oreiro" />
+		<meta
+			name="keywords"
+			content="Buscador precios Rosario, supermercados Rosario, productos baratos, mejores precios rosario, supermercados rosario santa fe argentina, comprar en supermercados"
+		/>
+		<meta name="creator" content="David Oreiro" />
+		<meta name="publisher" content="David Oreiro" />
+		<meta name="category" content="Market App" />
+		<meta property="og:title" content="Buscador de precios en Rosario" />
+		<meta
+			property="og:description"
+			content="Encontrá los productos al mejor precio en la ciudad de Rosario, Santa Fe, Argentina. en 3 sencillos pasos."
+		/>
+		<meta property="og:image" content="./open-graph-image.png" />
+		<meta property="og:image:width" content="450" />
+		<meta property="og:image:height" content="500" />
+		<meta property="og:image:alt" content="Open-graph no encontrado." />
 		<title>Buscador de productos | Rosario, Santa Fe, Argentina</title>
 	</head>
 	<body>
+		<div id="main_loader" class="loaderMainContainer">Cargando...</div>
 		<img
 			class="imagenFondoGlobal"
 			src="./assetsIndex/fondo.png"
@@ -13,5 +33,6 @@
 		/>
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
+		<script type="module" src="main_loader.js"></script>
 	</body>
 </html>

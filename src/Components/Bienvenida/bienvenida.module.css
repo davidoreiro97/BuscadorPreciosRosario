@@ -4,8 +4,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 10vh;
-	padding: 10vh 3em;
+	padding: 48px 3em;
 	font-size: 10px;
 	font-family: "Montserrat";
 	text-align: center;
@@ -24,7 +23,9 @@
 .welcomeContainer__h2 {
 	max-width: 650px;
 	text-wrap: balance;
-	font-size: 2.2em;
+	padding: 20px;
+	padding-bottom: 28px;
+	font-size: 2.5em;
 	font-weight: 550;
 }
 .welcomeContainer__comenzarBtn {
@@ -63,11 +64,10 @@
 @media (max-width: 650px) {
 	.welcomeContainer {
 		font-size: 8px;
-		gap: 7.5vh;
 	}
 }
 @media (max-width: 450px) {
 	.welcomeContainer {
-		font-size: 5.5px;
+		font-size: 6px;
 	}
 }

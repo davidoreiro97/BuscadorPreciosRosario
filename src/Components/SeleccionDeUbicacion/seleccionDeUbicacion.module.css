@@ -4,14 +4,14 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 10vh 3em;
+	padding: 48px 3em;
 	font-size: 10px;
 	font-family: "Montserrat";
 	text-align: center;
-	gap: 1em;
 }
 .seleccionUbicacionContainer__header__h2 {
 	font-size: 3.2em;
+	padding-bottom: 12px;
 }
 .seleccionUbicacionContainer__p {
 	max-width: 550px;
@@ -24,21 +24,19 @@
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	gap: 5vh;
-	padding-top: 4vh;
+	gap: 20px;
+	padding-top: 26px;
 }
 @media (max-width: 650px) {
 	.seleccionUbicacionContainer {
 		font-size: 8px;
-		gap: 4vh;
 	}
 	.seleccionUbicacionContainer__optContainer {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		max-width: 350px;
-		gap: 6vh;
-		padding-top: 0px;
+		gap: 24px;
 	}
 }
 @media (max-width: 450px) {
