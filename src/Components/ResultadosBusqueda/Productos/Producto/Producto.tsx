@@ -45,6 +45,7 @@ export const Producto = ({
 		COTO: logoCoto,
 	};
 	const urlLogo = logosURL[nombre_supermercado];
+	const [imagenCargada, setImagenCargada] = useState(false);
 	return (
 		<div className={styles.producto}>
 			<div className={styles.producto__precioImgContainer}>
@@ -55,8 +56,12 @@ export const Producto = ({
 					className={styles.producto__precioImgContainer__img}
 					src={url_imagen_online}
 					alt={`Imagen del producto ${nombre_producto}`}
-					loading="lazy"
+					onLoad={() => setImagenCargada(true)}
+					style={{ display: imagenCargada ? "block" : "none" }}
 				/>
+				{!imagenCargada && (
+					<div className={styles.skeletonImage}>CARGANDO...</div>
+				)}
 			</div>
 			<div className={styles.producto__datos}>
 				<h3 className={styles.producto__datos__nombreProducto}>

@@ -22,7 +22,8 @@
 		-1px 1px 0.5px black;
 	border-right: 1px solid black;
 }
-.producto__precioImgContainer__img {
+.producto__precioImgContainer__img,
+.skeletonImage {
 	width: 250px;
 	height: 100%;
 	padding: 10px;
@@ -36,6 +37,32 @@
 	filter: brightness(1.1) contrast(1.1);
 	box-shadow: inset 0px 0px 10px 0px black;
 }
+
+.skeletonImage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	animation: parpadeo 1.5s ease-in-out infinite;
+	background-image: url(../../../../assets/img/skeleton_img_loadpng.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 80% 70%;
+	font-family: "Montserrat";
+	font-size: 2em;
+	font-weight: 700;
+}
+
+@keyframes parpadeo {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
 .producto__datos {
 	display: flex;
 	width: 100%;
@@ -179,12 +206,14 @@
 }
 
 @media (max-width: 675px) {
-	.producto__precioImgContainer__img {
+	.producto__precioImgContainer__img,
+	.skeletonImage {
 		width: 200px;
 	}
 }
 @media (max-width: 500px) {
-	.producto__precioImgContainer__img {
+	.producto__precioImgContainer__img,
+	.skeletonImage {
 		width: 150px;
 	}
 }

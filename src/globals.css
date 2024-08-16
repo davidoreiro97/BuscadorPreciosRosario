@@ -118,7 +118,7 @@ body {
 }
 
 .main_loader__text {
-	font-family: "Montserrat";
+	font-family: Helvetica, "Montserrat";
 	font-weight: 650;
 	font-size: 1.8em;
 }
