@@ -8,10 +8,12 @@ export default async function getCoordinates(
 	ubicacionText: string
 ): Promise<{ latitud: number; longitud: number; direccion: string }> {
 	const tunnel_endpoints_base_url = await getEndpoints();
+	const url_cloudflare = "https://davidoreiro97.online";
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
-	const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
+	const endpoint_cloudflare = `${url_cloudflare}/coordinates`;
 	const endpoint_localtunnel = `${url_localtunnel}/coordinates`;
-	const endpoint_ngrok = `${url_ngrok}/coordinates`;
+	//const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
+	//const endpoint_ngrok = `${url_ngrok}/coordinates`; Se utilizaba como redundancia por si fallaba localtunnel.
 
 	const options = {
 		method: "POST",
@@ -70,13 +72,13 @@ export default async function getCoordinates(
 	}
 
 	try {
-		return await intentarConectar(endpoint_localtunnel);
+		return await intentarConectar(endpoint_cloudflare);
 	} catch (e: any) {
 		if (e.message === "No se pudo conectar después de varios intentos.") {
 			console.log(
-				"Fallo en TODOS los intentos con localtunnel, intentando con ngrok..."
+				"Fallo en los intentos de conectarse al tunel de CLoudflare, intentando con localtunnel..."
 			);
-			return await intentarConectar(endpoint_ngrok);
+			return await intentarConectar(endpoint_localtunnel);
 		} else {
 			throw e;
 		}

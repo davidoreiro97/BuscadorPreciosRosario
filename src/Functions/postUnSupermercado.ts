@@ -11,10 +11,12 @@ export default async function postUnSupermercado(
 	signal: AbortSignal
 ) {
 	const tunnel_endpoints_base_url = await getEndpoints();
+	const url_cloudflare = "https://davidoreiro97.online";
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
-	const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
+	const endpoint_cloudflare = `${url_cloudflare}/scrapSupermercadosRosario`;
 	const endpoint_localtunnel = `${url_localtunnel}/scrapSupermercadosRosario`;
-	const endpoint_ngrok = `${url_ngrok}/scrapSupermercadosRosario`; // Corregir si el endpoint es diferente
+	//const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
+	//const endpoint_ngrok = `${url_ngrok}/scrapSupermercadosRosario`; // Este endpoint estaba para ngrok y apuntaba al puerto 6000.
 
 	const options = {
 		method: "POST",
@@ -81,15 +83,15 @@ export default async function postUnSupermercado(
 	}
 
 	try {
-		// Intento primero con localtunnel
-		return await intentarConectar(endpoint_localtunnel);
+		// Intento primero con cloudflare.
+		return await intentarConectar(endpoint_cloudflare);
 	} catch (e: any) {
 		if (e.message === "No se pudo conectar después de varios intentos.") {
-			// Intento con ngrok si localtunnel falla
+			// Intento con localtunnel si cloudflare falla
 			console.log(
-				"Fallo en los intentos con localtunnel, intentando con ngrok..."
+				"Fallo en los intentos de conectarse al tunel de CLoudflare, intentando con localtunnel..."
 			);
-			return await intentarConectar(endpoint_ngrok);
+			return await intentarConectar(endpoint_localtunnel);
 		} else {
 			throw e;
 		}
