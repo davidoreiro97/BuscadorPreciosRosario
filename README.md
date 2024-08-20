@@ -21,7 +21,7 @@
 
 - ##### Solo funciona para la ciudad de de Rosario, Santa Fe, Argentina.
 - ##### La distancia calculada entre el usuario y las sucursales no es exacta (en cuadras) ya que se utiliza la formula de Haversine la cual calcula la distancia en línea recta entre dos puntos en una esfera y no la distancia en cuadras como sí lo haría un servicio de geolocalización.
-- ##### Se invirtieron 0$ en la aplicación y su desarrollo, funciona con servicios gratuitos tanto en el frontend como en el backend y esto también aplica limitaciones de planes gratuitos en los servicios utilizados (Here api para la geolocalización inversa, localtunnel para crear un tunel entre internet y el servidor local, ngrok para tener un tunel de respaldo por si falla localtunnel), ahora se utiliza también el tunel de cloudflare Zero Trust el cual parece bastante estable y localtunnel como respaldo, ya que, ngrok solo permite 1GB de transferencia mensual en su plan gratuito.
+- ##### Se invirtieron 0$ en la aplicación y su desarrollo, funciona con servicios gratuitos tanto en el frontend como en el backend y esto también aplica limitaciones de planes gratuitos en los servicios utilizados (Here api para la geolocalización inversa, localtunnel para crear un tunel entre internet y el servidor local, ngrok para tener un tunel de respaldo por si falla localtunnel), ahora se utiliza también el tunel de cloudflare Zero Trust el cual parece bastante estable y localtunnel como respaldo, ya que, ngrok solo permite 1GB de transferencia mensual en su plan gratuito..
 - ##### El servidor es una PC común con una conexión a internet hogareña lo cual está expuesta a riesgos como cortes de luz, internet, fallos de hardware, etc.
 
 ##
