@@ -55,7 +55,7 @@ export const SeleccionDeUbicacion = () => {
 				</h2>
 			</header>
 			<p className={styles.seleccionUbicacionContainer__p}>
-				Selecciona <strong>una ubicacion</strong> para que busquemos en
+				Selecciona <strong>una ubicación</strong> para que busquemos en
 				supermercados cercanos.
 			</p>
 			<div className={styles.seleccionUbicacionContainer__optContainer}>

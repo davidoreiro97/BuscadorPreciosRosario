@@ -73,7 +73,7 @@ export const CercanosAUnaDireccion = () => {
 			setLoader(false);
 			if (error.message === "ADDRESS_NOT_FOUND") {
 				setErrorMSG(
-					"NO SE ENCONTRARON RESULTADOS PARA LA DIRECCION INGRESADA."
+					"NO SE ENCONTRARON RESULTADOS PARA LA DIRECCIÓN INGRESADA."
 				);
 				setErrorSoluciones(["Ingresar otra ubicación."]);
 				setErrorSeccion(true);
@@ -150,7 +150,7 @@ export const CercanosAUnaDireccion = () => {
 			{mensajeDireccion && direccionText && (
 				<div className={styles.confirmacionContainer}>
 					<h3 className={styles.confirmacionContainer__h3}>
-						La direccion ingresada fue : <br />{" "}
+						La dirección ingresada fue : <br />{" "}
 						<span className={styles.confirmacionContainer__h3_direccion}>
 							{direccionText}
 						</span>

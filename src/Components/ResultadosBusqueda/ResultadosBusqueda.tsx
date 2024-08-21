@@ -254,7 +254,7 @@ export const ResultadosBusqueda = () => {
 									onClick={orderByClosest}
 								>
 									{/* La latitud es -200 cuando no se eligió ubicación*/}
-									SUPERMERCADO MAS CERCANO
+									SUPERMERCADO MÁS CERCANO
 								</button>
 								<button
 									title="Ordenar productos alfabeticamente"
