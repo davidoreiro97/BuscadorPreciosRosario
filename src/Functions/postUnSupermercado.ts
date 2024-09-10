@@ -11,10 +11,11 @@ export default async function postUnSupermercado(
 	signal: AbortSignal
 ) {
 	const tunnel_endpoints_base_url = await getEndpoints();
-	const url_cloudflare = "https://davidoreiro97.online";
+	const url_cloudflare = "https://davidoreiro97.online/buscadorPreciosRosario";
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
 	const endpoint_cloudflare = `${url_cloudflare}/scrapSupermercadosRosario`;
 	const endpoint_localtunnel = `${url_localtunnel}/scrapSupermercadosRosario`;
+	//const endpoint_testing ="http://127.0.0.1:3000/buscadorPreciosRosario/scrapSupermercadosRosario";
 	//const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
 	//const endpoint_ngrok = `${url_ngrok}/scrapSupermercadosRosario`; // Este endpoint estaba para ngrok y apuntaba al puerto 6000.
 

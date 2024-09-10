@@ -8,10 +8,11 @@ export default async function getCoordinates(
 	ubicacionText: string
 ): Promise<{ latitud: number; longitud: number; direccion: string }> {
 	const tunnel_endpoints_base_url = await getEndpoints();
-	const url_cloudflare = "https://davidoreiro97.online";
+	const url_cloudflare = "https://davidoreiro97.online/buscadorPreciosRosario";
 	const url_localtunnel = tunnel_endpoints_base_url.url_localtunnel;
 	const endpoint_cloudflare = `${url_cloudflare}/coordinates`;
 	const endpoint_localtunnel = `${url_localtunnel}/coordinates`;
+	//Ya tampoco utilizo localtunnel.
 	//const url_ngrok = tunnel_endpoints_base_url.url_ngrok;
 	//const endpoint_ngrok = `${url_ngrok}/coordinates`; Se utilizaba como redundancia por si fallaba localtunnel.
 
